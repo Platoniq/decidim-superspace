@@ -1,0 +1,2 @@
+# decidim-superspaces
+Decidim SuperSpace
