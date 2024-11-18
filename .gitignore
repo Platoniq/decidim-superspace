@@ -6,6 +6,8 @@
 /pkg/
 /spec/reports/
 /tmp/
+.DS_Store
+node_modules/
 
 # rspec failure tracking
 .rspec-failures
