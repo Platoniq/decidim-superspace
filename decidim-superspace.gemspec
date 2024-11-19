@@ -5,7 +5,7 @@ $LOAD_PATH.push File.expand_path("lib", __dir__)
 require "decidim/superspace/version"
 
 Gem::Specification.new do |s|
-  s.version = Decidim::Superspace.version
+  s.version = Decidim::Superspace::VERSION
   s.authors = ["Francisco Bolívar"]
   s.email = ["francisco.bolivar@nazaries.com"]
   s.license = "AGPL-3.0"
@@ -30,5 +30,5 @@ Gem::Specification.new do |s|
     end
   end
 
-  s.add_dependency "decidim-core", Decidim::Superspace.version
+  s.add_dependency "decidim-core", Decidim::Superspace::COMPAT_DECIDIM_VERSION
 end

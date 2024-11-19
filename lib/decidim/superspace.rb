@@ -3,7 +3,6 @@
 require "decidim/superspace/admin"
 require "decidim/superspace/engine"
 require "decidim/superspace/admin_engine"
-require "decidim/superspace/component"
 
 module Decidim
   # This namespace holds the logic of the `Superspace` component. This component
