@@ -1,0 +1,46 @@
+<% add_decidim_page_title(t(".title")) %>
+<div class="card">
+  <div class="item_show__header">
+    <h1 class="item_show__header-title">
+      <%= t ".title" %>
+      <div class="flex ml-auto items-center gap-x-4">
+        <% if allowed_to? :create, :superspace %>
+          <%= link_to t("actions.new", scope: "decidim.superspaces.admin.superspaces", name: t("models.superspace.name", scope: "decidim.superspaces.admin")), new_superspace_path, class: "button button__sm button__secondary new" %>
+        <% end %>
+      </div>
+    </h1>
+  </div>
+  <div class="table-scroll">
+    <table class="table-list superspaces">
+      <thead>
+        <tr>
+          <th><%= t("models.superspace.fields.title", scope: "decidim.superspaces") %></th>
+          <th><%= t("models.superspace.fields.created_at", scope: "decidim.superspaces") %></th>
+          <th class="actions"><%= t("actions.title", scope: "decidim.superspaces.admin.superspaces") %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% superspaces.each do |superspace| %>
+          <tr data-id="<%= superspace.id %>">
+            <td>
+              <%= translated_attribute(superspace.title) %><br>
+            </td>
+            <td>
+              <%= l superspace.created_at, format: "%d/%m/%Y - %H:%M" %>
+            </td>
+            <td class="table-list__actions">
+              <% if allowed_to? :update, :superspace, superspace: superspace %>
+                <%= icon_link_to "pencil-line", edit_superspace_path(superspace), t("actions.edit", scope: "decidim.superspaces.admin.superspaces"), class: "action-icon--edit" %>
+              <% end %>
+
+              <% if allowed_to? :destroy, :superspace, superspace: superspace %>
+                <%= icon_link_to "delete-bin-line", superspace_path(superspace), t("actions.destroy", scope: "decidim.superspaces.admin.superspaces"), method: :delete, class: "action-icon--remove", data: { confirm: t("actions.confirm_destroy", scope: "decidim.superspaces.admin.superspaces") } %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= paginate superspaces, theme: "decidim" %>
+  </div>
+</div>

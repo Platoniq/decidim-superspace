@@ -4,7 +4,8 @@ base_locale: en
 locales: [en]
 
 ignore_unused:
-  - "decidim.components.superspaces.name"
+  - decidim.admin.menu.superspaces
+  - decidim.superspaces.admin_log.*
 
 ignore_missing:
   - decidim.participatory_processes.scopes.global

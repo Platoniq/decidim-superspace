@@ -10,13 +10,25 @@ module Decidim
       paths["lib/tasks"] = nil
 
       routes do
-        # Add admin engine routes here
-        # resources :superspaces do
-        #   collection do
-        #     resources :exports, only: [:create]
-        #   end
-        # end
-        # root to: "superspaces#index"
+        resources :superspaces
+        root to: "superspaces#index"
+      end
+
+      initializer "decidim_superspaces.admin_mount_routes" do
+        Decidim::Core::Engine.routes do
+          mount Decidim::Superspaces::AdminEngine, at: "/admin/superspaces", as: "decidim_admin_superspaces"
+        end
+      end
+
+      initializer "decidim_superspaces.admin_menu" do
+        Decidim.menu :admin_menu do |menu|
+          menu.add_item :superspaces,
+                        I18n.t("menu.superspaces", scope: "decidim.admin", default: "Superspaces"),
+                        decidim_admin_superspaces.superspaces_path,
+                        icon_name: "global-line",
+                        position: 1,
+                        active: :inclusive
+        end
       end
 
       def load_seed
