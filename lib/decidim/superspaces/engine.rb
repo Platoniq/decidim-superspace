@@ -10,9 +10,8 @@ module Decidim
       isolate_namespace Decidim::Superspaces
 
       routes do
-        # Add engine routes here
-        # resources :superspaces
-        # root to: "superspaces#index"
+        resources :superspaces
+        root to: "superspaces#index"
       end
 
       initializer "decidim_superspaces.webpacker.assets_path" do

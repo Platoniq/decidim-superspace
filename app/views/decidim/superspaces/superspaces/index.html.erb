@@ -1,0 +1,5 @@
+<ul>
+  <% superspaces.each do |superspace| %>
+    <li><%= link_to translated_attribute(superspace.title), superspace_path(superspace) %></li>
+  <% end %>
+</ul>
