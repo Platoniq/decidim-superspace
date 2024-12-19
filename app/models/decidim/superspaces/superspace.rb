@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Decidim
-  module Superspace
+  module Superspaces
     class Superspace < ApplicationRecord
       include Decidim::TranslatableResource
 

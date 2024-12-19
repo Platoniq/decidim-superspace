@@ -1,22 +1,22 @@
 # frozen_string_literal: true
 
 module Decidim
-  module Superspace
-    # This is the engine that runs on the public interface of `Superspace`.
+  module Superspaces
+    # This is the engine that runs on the public interface of `Superspaces`.
     class AdminEngine < ::Rails::Engine
-      isolate_namespace Decidim::Superspace::Admin
+      isolate_namespace Decidim::Superspaces::Admin
 
       paths["db/migrate"] = nil
       paths["lib/tasks"] = nil
 
       routes do
         # Add admin engine routes here
-        # resources :superspace do
+        # resources :superspaces do
         #   collection do
         #     resources :exports, only: [:create]
         #   end
         # end
-        # root to: "superspace#index"
+        # root to: "superspaces#index"
       end
 
       def load_seed

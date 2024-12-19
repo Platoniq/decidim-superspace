@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :superspace, class: "Decidim::Superspace::Superspace" do
+  factory :superspace, class: "Decidim::Superspaces::Superspace" do
     transient do
       skip_injection { false }
     end
@@ -11,7 +11,7 @@ FactoryBot.define do
     organization
   end
 
-  factory :superspace_participatory_space, class: "Decidim::Superspace::SuperspaceParticipatorySpace" do
+  factory :superspaces_participatory_space, class: "Decidim::Superspaces::SuperspacesParticipatorySpace" do
     superspace factory: [:superspace]
     participatory_space { association(:participatory_process, :with_steps, organization: superspace.organization) }
   end

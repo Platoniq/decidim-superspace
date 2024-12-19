@@ -8,10 +8,10 @@ ruby RUBY_VERSION
 # the Gemfile is copied to the development_app folder (almost) as is.
 base_path = ""
 base_path = "../" if File.basename(__dir__) == "development_app"
-require_relative "#{base_path}lib/decidim/superspace/version"
+require_relative "#{base_path}lib/decidim/superspaces/version"
 
-gem "decidim", Decidim::Superspace::DECIDIM_VERSION
-gem "decidim-superspace", path: "."
+gem "decidim", Decidim::Superspaces::DECIDIM_VERSION
+gem "decidim-superspaces", path: "."
 
 gem "bootsnap", "~> 1.4"
 gem "puma", ">= 6.3.1"
@@ -19,7 +19,7 @@ gem "puma", ">= 6.3.1"
 group :development, :test do
   gem "byebug", "~> 11.0", platform: :mri
 
-  gem "decidim-dev", Decidim::Superspace::DECIDIM_VERSION
+  gem "decidim-dev", Decidim::Superspaces::DECIDIM_VERSION
 end
 
 group :development do

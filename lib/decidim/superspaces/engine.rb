@@ -4,18 +4,18 @@ require "rails"
 require "decidim/core"
 
 module Decidim
-  module Superspace
-    # This is the engine that runs on the public interface of superspace.
+  module Superspaces
+    # This is the engine that runs on the public interface of superspaces.
     class Engine < ::Rails::Engine
-      isolate_namespace Decidim::Superspace
+      isolate_namespace Decidim::Superspaces
 
       routes do
         # Add engine routes here
-        # resources :superspace
-        # root to: "superspace#index"
+        # resources :superspaces
+        # root to: "superspaces#index"
       end
 
-      initializer "Superspace.webpacker.assets_path" do
+      initializer "decidim_superspaces.webpacker.assets_path" do
         Decidim.register_assets_path File.expand_path("app/packs", root)
       end
     end

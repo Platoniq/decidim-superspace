@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module Decidim
-  module Superspace
-    # Custom helpers, scoped to the superspace engine.
+  module Superspaces
+    # Custom helpers, scoped to the superspaces engine.
     #
     module ApplicationHelper
     end

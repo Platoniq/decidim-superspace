@@ -1,4 +1,4 @@
-name: "[CI] Superspace"
+name: "[CI] Test"
 on:
   push:
     branches:
@@ -51,7 +51,7 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
       - name: Get npm cache directory path
         id: npm-cache-dir-path
-        run: echo "dir=$(npm get cache)-superspace" >> $GITHUB_OUTPUT
+        run: echo "dir=$(npm get cache)-superspaces" >> $GITHUB_OUTPUT
       - uses: actions/cache@v3
         id: npm-cache
         with:

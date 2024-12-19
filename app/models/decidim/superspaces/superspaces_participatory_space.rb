@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 module Decidim
-  module Superspace
-    class SuperspaceParticipatorySpace < ApplicationRecord
+  module Superspaces
+    class SuperspacesParticipatorySpace < ApplicationRecord
       belongs_to :superspace,
-                 foreign_key: "decidim_superspace_superspace_id",
-                 class_name: "Decidim::Superspace::Superspace"
+                 foreign_key: "decidim_superspaces_superspace_id",
+                 class_name: "Decidim::Superspaces::Superspace"
 
       belongs_to :participatory_space,
                  foreign_type: "participatory_space_type",

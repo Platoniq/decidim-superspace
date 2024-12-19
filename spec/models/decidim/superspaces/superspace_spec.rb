@@ -3,7 +3,7 @@
 require "spec_helper"
 
 module Decidim
-  module Superspace
+  module Superspaces
     describe Superspace do
       subject { build(:superspace) }
 

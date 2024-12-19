@@ -3,7 +3,7 @@
 require "spec_helper"
 
 module Decidim
-  describe Superspace do
+  describe Superspaces do
     subject { described_class }
 
     it "has version" do

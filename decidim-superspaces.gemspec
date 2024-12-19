@@ -2,10 +2,10 @@
 
 $LOAD_PATH.push File.expand_path("lib", __dir__)
 
-require "decidim/superspace/version"
+require "decidim/superspaces/version"
 
 Gem::Specification.new do |s|
-  s.version = Decidim::Superspace::VERSION
+  s.version = Decidim::Superspaces::VERSION
   s.authors = ["Francisco Bolívar"]
   s.email = ["francisco.bolivar@nazaries.com"]
   s.license = "AGPL-3.0"
@@ -16,8 +16,8 @@ Gem::Specification.new do |s|
   }
   s.required_ruby_version = "~> 3.1"
 
-  s.name = "decidim-superspace"
-  s.summary = "A decidim superspace module"
+  s.name = "decidim-superspaces"
+  s.summary = "A decidim superspaces module"
   s.description = "A participatory space to jointly manage assemblies and processes."
 
   s.files = Dir.chdir(__dir__) do
@@ -27,5 +27,5 @@ Gem::Specification.new do |s|
     end
   end
 
-  s.add_dependency "decidim-core", Decidim::Superspace::COMPAT_DECIDIM_VERSION
+  s.add_dependency "decidim-core", Decidim::Superspaces::COMPAT_DECIDIM_VERSION
 end

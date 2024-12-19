@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Decidim
-  module Superspace
+  module Superspaces
     # This controller is the abstract class from which all other controllers of
     # this engine inherit.
     #
