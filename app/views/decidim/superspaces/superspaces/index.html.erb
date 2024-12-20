@@ -1,5 +1,19 @@
-<ul>
-  <% superspaces.each do |superspace| %>
-    <li><%= link_to translated_attribute(superspace.title), superspace_path(superspace) %></li>
-  <% end %>
-</ul>
+<% add_decidim_page_title(t(".title")) %>
+
+<%
+  edit_link(
+    decidim_admin_superspaces.superspaces_path,
+    :read,
+    :superspace
+  )
+%>
+
+<% content_for :aside do %>
+  <h1 class="title-decorator"><%= t("title", scope: "decidim.superspaces.superspaces.index") %></h1>
+<% end %>
+
+<%= render layout: "layouts/decidim/shared/layout_two_col" do %>
+  <section id="superspaces-grid" class="layout-main__section">
+    <%= render partial: "collection" %>
+  </section>
+<% end %>

@@ -1,1 +1,18 @@
-<%= translated_attribute(superspace.title) %>
+<% add_decidim_page_title(translated_attribute(superspace.title)) %>
+
+<%
+  edit_link(
+    decidim_admin_superspaces.edit_superspace_path(superspace),
+    :update,
+    :superspace,
+    superspace:
+  )
+%>
+
+<% content_for :aside do %>
+  <h1 class="title-decorator"><%= translated_attribute(superspace.title) %></h1>
+<% end %>
+
+<%= render layout: "layouts/decidim/shared/layout_two_col" do %>
+  TODO: Add content here
+<% end %>

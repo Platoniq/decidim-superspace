@@ -14,6 +14,13 @@ module Decidim
         root to: "superspaces#index"
       end
 
+      initializer "decidim_superspaces.register_resources" do
+        Decidim.register_resource(:superspace) do |resource|
+          resource.model_class_name = "Decidim::Superspaces::Superspace"
+          resource.card = "decidim/superspaces/superspace"
+        end
+      end
+
       initializer "decidim_superspaces.webpacker.assets_path" do
         Decidim.register_assets_path File.expand_path("app/packs", root)
       end

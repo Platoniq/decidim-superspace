@@ -42,3 +42,6 @@ en:
           fields:
             created_at: Created at
             title: Title
+      superspaces:
+        index:
+          title: Superspaces
