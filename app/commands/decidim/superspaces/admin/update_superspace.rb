@@ -38,7 +38,9 @@ module Decidim
           Decidim.traceability.update!(
             superspace,
             current_user,
-            title: form.title
+            title: form.title,
+            hero_image: form.hero_image,
+            locale: form.locale
           )
         end
       end

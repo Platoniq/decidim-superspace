@@ -42,6 +42,7 @@ en:
           fields:
             created_at: Created at
             title: Title
+            locale: Language
       superspaces:
         index:
           title: Superspaces

@@ -15,6 +15,7 @@
       <thead>
         <tr>
           <th><%= t("models.superspace.fields.title", scope: "decidim.superspaces") %></th>
+          <th><%= t("models.superspace.fields.locale", scope: "decidim.superspaces") %></th>
           <th><%= t("models.superspace.fields.created_at", scope: "decidim.superspaces") %></th>
           <th class="actions"><%= t("actions.title", scope: "decidim.superspaces.admin.superspaces") %></th>
         </tr>
@@ -24,6 +25,9 @@
           <tr data-id="<%= superspace.id %>">
             <td>
               <%= translated_attribute(superspace.title) %><br>
+            </td>
+            <td>
+              <%= superspace.locale %><br>
             </td>
             <td>
               <%= l superspace.created_at, format: "%d/%m/%Y - %H:%M" %>

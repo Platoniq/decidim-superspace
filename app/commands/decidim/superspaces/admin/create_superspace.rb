@@ -35,7 +35,9 @@ module Decidim
         def create_superspace!
           attributes = {
             organization: form.current_organization,
-            title: form.title
+            title: form.title,
+            locale: form.locale,
+            hero_image: form.hero_image
           }
 
           @superspace = Decidim.traceability.create!(

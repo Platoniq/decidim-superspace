@@ -8,8 +8,12 @@ module Decidim
         include TranslatableAttributes
 
         translatable_attribute :title, String
+        attribute :locale
+        attribute :hero_image
 
         validates :title, translatable_presence: true
+        validates :locale, presence: true
+
 
         alias organization current_organization
       end

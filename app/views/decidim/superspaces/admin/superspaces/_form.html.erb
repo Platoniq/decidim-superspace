@@ -3,5 +3,11 @@
     <div class="row column">
       <%= form.translated :text_field, :title, autofocus: true %>
     </div>
+    <div class="row column">
+      <%= form.collection_select :locale, localized_locales(Decidim::available_locales), :id, :name, {:selected => current_locale} %>
+    </div>
+    <div class="row column">
+      <%= form.upload :hero_image, button_class: "button button__sm button__transparent-secondary" %>
+    </div>
   </div>
 </div>

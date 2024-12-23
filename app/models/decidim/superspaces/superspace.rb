@@ -6,6 +6,10 @@ module Decidim
       include Decidim::Loggable
       include Decidim::Traceable
       include Decidim::TranslatableResource
+      include Decidim::HasUploadValidations
+
+      has_one_attached :hero_image
+      validates_upload :hero_image, uploader: Decidim::HeroImageUploader
 
       translatable_fields :title
 
