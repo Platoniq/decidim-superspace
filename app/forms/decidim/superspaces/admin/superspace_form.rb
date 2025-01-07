@@ -10,6 +10,8 @@ module Decidim
         translatable_attribute :title, String
         attribute :locale
         attribute :hero_image
+        attribute :assembly_ids
+        attribute :participatory_process_ids
 
         validates :title, translatable_presence: true
         validates :locale, presence: true

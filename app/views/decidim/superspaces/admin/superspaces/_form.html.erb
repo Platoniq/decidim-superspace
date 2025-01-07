@@ -1,3 +1,48 @@
+<style type="text/css">
+.participatory-spaces-group {
+  border: 1px solid #e8e8e8;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  border-radius: 4px;
+  
+  legend {
+    font-weight: 600;
+    margin-bottom: 1rem;
+    padding: 0 0.5rem;
+  }
+
+  .check-boxes {
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 0.5rem;
+  }
+
+  .check-box {
+    margin-bottom: 0.8rem;
+    
+    label {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      
+      input[type="checkbox"] {
+        margin: 0 0.5rem 0 0;
+      }
+      
+      .participatory-space-title {
+        line-height: 1.2;
+      }
+    }
+
+    &:hover {
+      .participatory-space-title {
+        color: var(--primary);
+      }
+    }
+  }
+}
+
+</style>
 <div class="form__wrapper">
   <div class="card pt-4">
     <div class="row column">
@@ -8,6 +53,56 @@
     </div>
     <div class="row column">
       <%= form.upload :hero_image, button_class: "button button__sm button__transparent-secondary" %>
+    </div>
+    <div class="row column">
+    <div class="row">
+        <div class="columns medium-6">
+          <fieldset class="participatory-spaces-group">
+            <legend><%= t("assemblies", scope: "decidim.superspaces.models.superspace.fields") %></legend>
+            
+            <div class="check-boxes">
+              <% Decidim::Assembly.where(organization: current_organization).each do |assembly| %>
+                <div class="check-box">
+                  <label>
+                   <%= form.check_box :assembly_ids, 
+                                  { multiple: true, label: false, checked:  @superspace.participatory_spaces.include?(assembly)}, 
+                                  assembly.id,
+                                  nil
+                                   %>
+                    <span class="participatory-space-title">
+                      <%= translated_attribute(assembly.slug) %>
+                    </span>
+                  </label>
+                </div>
+              <% end %>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="columns medium-6">
+          <fieldset class="participatory-spaces-group">
+            <legend><%= t("participatory_processes", scope: "decidim.superspaces.models.superspace.fields") %></legend>
+            
+            <div class="check-boxes">
+              <% Decidim::ParticipatoryProcess.where(organization: current_organization).each do |process| %>
+                <div class="check-box">
+                  <label>
+                    <%= form.check_box :participatory_process_ids, 
+                                  { multiple: true, label: false, checked: @superspace.participatory_spaces.include?(process) }, 
+                                  process.id
+                                  %>
+                    <span class="participatory-space-title">
+                      <%= translated_attribute(process.slug) %>
+                    </span>
+                  </label>
+                </div>
+              <% end %>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+
+
     </div>
   </div>
 </div>

@@ -43,6 +43,8 @@ en:
             created_at: Created at
             title: Title
             locale: Language
+            assemblies: Assemblies
+            participatory_processes: Participatory Processes
       superspaces:
         index:
           title: Superspaces

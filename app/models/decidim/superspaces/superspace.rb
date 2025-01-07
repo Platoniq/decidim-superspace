@@ -13,10 +13,16 @@ module Decidim
 
       translatable_fields :title
 
+      has_many :superspaces_participatory_spaces, foreign_key: "decidim_superspaces_superspace_id"
+
       belongs_to :organization,
                  foreign_key: "decidim_organization_id",
                  class_name: "Decidim::Organization"
 
+      def participatory_spaces
+        superspaces_participatory_spaces.map(&:participatory_space)
+      end
+      
       def self.log_presenter_class_for(_log) = Decidim::Superspaces::AdminLog::SuperspacePresenter
     end
   end
