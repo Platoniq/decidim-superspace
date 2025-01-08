@@ -51,58 +51,24 @@ module Decidim
         private
 
         def update_associations(assembly_ids, process_ids)
+          @superspace.superspaces_participatory_spaces.destroy_all
+
           if assembly_ids.present?
-            current_assemblies =  @superspace.superspaces_participatory_spaces
-            .where(participatory_space_type: 'Decidim::Assembly')
-            .pluck(:participatory_space_id)
-
-            new_assemblies = assembly_ids
-
-            ids_to_delete = current_assemblies - new_assemblies
-            @superspace.superspaces_participatory_spaces
-              .where(participatory_space_type: 'Decidim::Assembly', participatory_space_id: ids_to_delete)
-              .destroy_all
-            
-            ids_to_add = new_assemblies - current_assemblies
-
-            assemblies_to_add = Decidim::Assembly.where(id: ids_to_add)
-
-            assemblies_to_add.each do |assembly|
-              @superspace.superspaces_participatory_spaces.create(
+            assemblies=Decidim::Assembly.where(id: assembly_ids)
+            assemblies.each do |assembly| 
+              @superspace.superspaces_participatory_spaces.create!(
                 participatory_space: assembly
               )
             end
-          else
-            @superspace.superspaces_participatory_spaces
-              .where(participatory_space_type: 'Decidim::Assembly')
-              .destroy_all
           end
-
+          
           if process_ids.present?
-            current_processes =  @superspace.superspaces_participatory_spaces
-            .where(participatory_space_type: 'Decidim::ParticipatoryProcess')
-            .pluck(:participatory_space_id)
-
-            new_processes = process_ids
-
-            ids_to_delete = current_processes - new_processes
-            @superspace.superspaces_participatory_spaces
-              .where(participatory_space_type: 'Decidim::ParticipatoryProcess', participatory_space_id: ids_to_delete)
-              .destroy_all
-            
-            ids_to_add = new_processes - current_processes
-
-            processes_to_add = Decidim::ParticipatoryProcess.where(id: ids_to_add)
-
-            processes_to_add.each do |process|
-              @superspace.superspaces_participatory_spaces.create(
+            processes=Decidim::ParticipatoryProcess.where(id: process_ids)
+            processes.each do |process|
+              @superspace.superspaces_participatory_spaces.create!(
                 participatory_space: process
               )
             end
-          else
-            @superspace.superspaces_participatory_spaces
-            .where(participatory_space_type: 'Decidim::Assembly')
-            .destroy_all
           end
         end
       end
