@@ -22,6 +22,22 @@ module Decidim
       def participatory_spaces
         superspaces_participatory_spaces.map(&:participatory_space)
       end
+
+      def assemblies
+        find_spaces_by_type("Decidim::Assembly")
+      end
+
+      def participatory_processes
+        find_spaces_by_type("Decidim::ParticipatoryProcess")
+      end
+
+      private 
+
+      def find_spaces_by_type(type)
+        spaces= superspaces_participatory_spaces.where(participatory_space_type: type)
+        
+        spaces.map(&:participatory_space)
+      end
       
       def self.log_presenter_class_for(_log) = Decidim::Superspaces::AdminLog::SuperspacePresenter
     end

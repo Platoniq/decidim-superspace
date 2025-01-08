@@ -48,3 +48,6 @@ en:
       superspaces:
         index:
           title: Superspaces
+        show:
+          assemblies: Assemblies
+          participatory_processes: Participatory Processes

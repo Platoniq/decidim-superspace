@@ -14,9 +14,21 @@
 <% end %>
 
 <%= render layout: "layouts/decidim/shared/layout_two_col" do %>
-  <section id="assemblies-grid" class="layout-main__section layout-main__heading">
-    <% superspace.participatory_spaces.each do |participatory_space| %>
-        <%= card_for participatory_space, highlight: true, size: :g %>
-    <% end %>      
-  </section>
+  <% if superspace.assemblies.any? %>
+    <section id="assemblies-grid" class="layout-main__section layout-main__heading">
+      <h2 class="title-decorator"><%= t("assemblies", scope: "decidim.superspaces.superspaces.show") %></h2>
+      <% superspace.assemblies.each do |assembly| %>
+        <%= card_for assembly, highlight: true, size: :g %>
+      <% end %>      
+    </section>
+  <% end %>
+
+  <% if superspace.participatory_processes.any? %>
+    <section id="processes-grid" class="layout-main__section layout-main__heading">
+      <h2 class="title-decorator"><%= t("participatory_processes", scope: "decidim.superspaces.superspaces.show") %></h2>
+      <% superspace.participatory_processes.each do |process| %>
+        <%= card_for process, highlight: true, size: :g %>
+      <% end %>      
+    </section>
+  <% end %>
 <% end %>
