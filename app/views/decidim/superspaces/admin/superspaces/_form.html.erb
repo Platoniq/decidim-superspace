@@ -1,55 +1,10 @@
-<style type="text/css">
-.participatory-spaces-group {
-  border: 1px solid #e8e8e8;
-  padding: 1rem;
-  margin-bottom: 2rem;
-  border-radius: 4px;
-  
-  legend {
-    font-weight: 600;
-    margin-bottom: 1rem;
-    padding: 0 0.5rem;
-  }
-
-  .check-boxes {
-    max-height: 400px;
-    overflow-y: auto;
-    padding: 0.5rem;
-  }
-
-  .check-box {
-    margin-bottom: 0.8rem;
-    
-    label {
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      
-      input[type="checkbox"] {
-        margin: 0 0.5rem 0 0;
-      }
-      
-      .participatory-space-title {
-        line-height: 1.2;
-      }
-    }
-
-    &:hover {
-      .participatory-space-title {
-        color: var(--primary);
-      }
-    }
-  }
-}
-
-</style>
 <div class="form__wrapper">
   <div class="card pt-4">
     <div class="row column">
       <%= form.translated :text_field, :title, autofocus: true %>
     </div>
     <div class="row column">
-      <%= form.collection_select :locale, localized_locales(Decidim::available_locales), :id, :name, {:selected => current_locale} %>
+      <%= form.collection_select :locale, localized_locales(Decidim::available_locales), :id, :name %>
     </div>
     <div class="row column">
       <%= form.upload :hero_image, button_class: "button button__sm button__transparent-secondary" %>
@@ -70,7 +25,7 @@
                                   nil
                                    %>
                     <span class="participatory-space-title">
-                      <%= translated_attribute(assembly.slug) %>
+                      <%= translated_attribute(assembly.title) %>
                     </span>
                   </label>
                 </div>
@@ -92,7 +47,7 @@
                                   process.id
                                   %>
                     <span class="participatory-space-title">
-                      <%= translated_attribute(process.slug) %>
+                      <%= translated_attribute(process.title) %>
                     </span>
                   </label>
                 </div>
