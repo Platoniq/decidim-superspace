@@ -13,7 +13,7 @@ module Decidim
 
       translatable_fields :title
 
-      has_many :superspaces_participatory_spaces, foreign_key: "decidim_superspaces_superspace_id"
+      has_many :superspaces_participatory_spaces, foreign_key: "decidim_superspaces_superspace_id", dependent: :destroy
 
       belongs_to :organization,
                  foreign_key: "decidim_organization_id",
@@ -31,15 +31,15 @@ module Decidim
         find_spaces_by_type("Decidim::ParticipatoryProcess")
       end
 
-      private 
+      def self.log_presenter_class_for(_log) = Decidim::Superspaces::AdminLog::SuperspacePresenter
+
+      private
 
       def find_spaces_by_type(type)
-        spaces= superspaces_participatory_spaces.where(participatory_space_type: type)
-        
+        spaces = superspaces_participatory_spaces.where(participatory_space_type: type)
+
         spaces.map(&:participatory_space)
       end
-      
-      def self.log_presenter_class_for(_log) = Decidim::Superspaces::AdminLog::SuperspacePresenter
     end
   end
 end

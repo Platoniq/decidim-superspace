@@ -35,7 +35,6 @@ module Decidim
         attr_reader :form, :superspace, :current_user
 
         def update_superspace!
-
           assembly_ids = form.assembly_ids
           participatory_process_ids = form.participatory_process_ids
           Decidim.traceability.update!(
@@ -45,30 +44,28 @@ module Decidim
             hero_image: form.hero_image,
             locale: form.locale
           )
-          update_associations(assembly_ids,participatory_process_ids)
+          update_associations(assembly_ids, participatory_process_ids)
         end
-
-        private
 
         def update_associations(assembly_ids, process_ids)
           @superspace.superspaces_participatory_spaces.destroy_all
 
           if assembly_ids.present?
-            assemblies=Decidim::Assembly.where(id: assembly_ids)
-            assemblies.each do |assembly| 
+            assemblies = Decidim::Assembly.where(id: assembly_ids)
+            assemblies.each do |assembly|
               @superspace.superspaces_participatory_spaces.create!(
                 participatory_space: assembly
               )
             end
           end
-          
-          if process_ids.present?
-            processes=Decidim::ParticipatoryProcess.where(id: process_ids)
-            processes.each do |process|
-              @superspace.superspaces_participatory_spaces.create!(
-                participatory_space: process
-              )
-            end
+
+          return if process_ids.blank?
+
+          processes = Decidim::ParticipatoryProcess.where(id: process_ids)
+          processes.each do |process|
+            @superspace.superspaces_participatory_spaces.create!(
+              participatory_space: process
+            )
           end
         end
       end

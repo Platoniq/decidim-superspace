@@ -39,7 +39,7 @@ module Decidim
               participatory_space: assembly
             )
           end
-          participatory_processes=Decidim::ParticipatoryProcess.where(id: participatory_processes_ids)
+          participatory_processes = Decidim::ParticipatoryProcess.where(id: participatory_processes_ids)
           participatory_processes.each do |process|
             @superspace.superspaces_participatory_spaces.create!(
               participatory_space: process
@@ -61,9 +61,7 @@ module Decidim
             attributes
           )
 
-          create_associations(form.assembly_ids,form.participatory_process_ids)
-
-
+          create_associations(form.assembly_ids, form.participatory_process_ids)
         end
       end
     end
