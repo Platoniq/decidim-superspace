@@ -60,8 +60,7 @@ module Decidim
 
           return if process_ids.blank?
 
-          processes = Decidim::ParticipatoryProcess.where(id: process_ids)
-          processes.each do |process|
+          Decidim::ParticipatoryProcess.where(id: process_ids).each do |process|
             @superspace.superspaces_participatory_spaces.create!(
               participatory_space: process
             )
