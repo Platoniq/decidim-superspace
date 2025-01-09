@@ -51,8 +51,7 @@ module Decidim
           @superspace.superspaces_participatory_spaces.destroy_all
 
           if assembly_ids.present?
-            assemblies = Decidim::Assembly.where(id: assembly_ids)
-            assemblies.each do |assembly|
+            Decidim::Assembly.where(id: assembly_ids).each do |assembly|
               @superspace.superspaces_participatory_spaces.create!(
                 participatory_space: assembly
               )
