@@ -5,7 +5,7 @@
   padding: 1rem;
   margin-bottom: 2rem;
   border-radius: 4px;
-  
+
   legend {
     font-weight: 600;
     margin-bottom: 1rem;
@@ -20,16 +20,16 @@
 
   .check-box {
     margin-bottom: 0.8rem;
-    
+
     label {
       display: flex;
       align-items: center;
       cursor: pointer;
-      
+
       input[type="checkbox"] {
         margin: 0 0.5rem 0 0;
       }
-      
+
       .participatory-space-title {
         line-height: 1.2;
       }
@@ -42,4 +42,3 @@
     }
   }
 }
-
