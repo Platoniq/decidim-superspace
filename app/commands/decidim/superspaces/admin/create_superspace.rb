@@ -33,14 +33,13 @@ module Decidim
         attr_reader :form, :current_user
 
         def create_associations(assemblies_ids, participatory_processes_ids)
-          assemblies = Decidim::Assembly.where(id: assemblies_ids)
-          assemblies.each do |assembly|
+          Decidim::Assembly.where(id: assemblies_ids).each do |assembly|
             @superspace.superspaces_participatory_spaces.create!(
               participatory_space: assembly
             )
           end
-          participatory_processes = Decidim::ParticipatoryProcess.where(id: participatory_processes_ids)
-          participatory_processes.each do |process|
+
+          Decidim::ParticipatoryProcess.where(id: participatory_processes_ids).each do |process|
             @superspace.superspaces_participatory_spaces.create!(
               participatory_space: process
             )
