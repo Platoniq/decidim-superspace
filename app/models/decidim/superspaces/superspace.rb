@@ -36,9 +36,7 @@ module Decidim
       private
 
       def find_spaces_by_type(type)
-        spaces = superspaces_participatory_spaces.where(participatory_space_type: type)
-
-        spaces.map(&:participatory_space)
+        superspaces_participatory_spaces.where(participatory_space_type: type).map(&:participatory_space)
       end
     end
   end
