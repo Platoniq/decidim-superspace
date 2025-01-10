@@ -11,13 +11,21 @@ module Decidim
         let(:organization) { create(:organization) }
         let(:current_user) { create(:user, organization:) }
         let(:title) { "Superspace title" }
+        let(:locale) {"en"}
+        let(:hero_image) {nil}
+        let(:assembly_ids) {nil}
+        let(:participatory_process_ids) {nil}
 
         let(:invalid) { false }
         let(:form) do
           double(
             invalid?: invalid,
             title: { en: title },
-            current_organization: organization
+            current_organization: organization,
+            hero_image: hero_image ,
+            locale: locale,
+            assembly_ids: assembly_ids,
+            participatory_process_ids: participatory_process_ids
           )
         end
 
