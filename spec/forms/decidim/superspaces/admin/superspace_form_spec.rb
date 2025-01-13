@@ -22,13 +22,13 @@ module Decidim
           }
         end
 
-        let(:locale){"en"}
+        let(:locale) { "en" }
 
-        let(:hero_image){nil}
+        let(:hero_image) { nil }
 
-        let(:assembly_ids){[]}
+        let(:assembly_ids) { [] }
 
-        let(:participatory_process_ids){[]}
+        let(:participatory_process_ids) { [] }
 
         let(:attributes) do
           {
@@ -55,10 +55,9 @@ module Decidim
         end
 
         context "when locale is missing" do
-          let(:locale){""}
+          let(:locale) { "" }
 
-          it {is_expected.not_to be_valid}
-
+          it { is_expected.not_to be_valid }
         end
       end
     end

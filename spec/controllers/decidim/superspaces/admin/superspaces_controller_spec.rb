@@ -65,17 +65,14 @@ module Decidim
               title: {
                 en: title
               },
-              locale: locale
+              locale:
 
-              
             }
           end
 
           context "with invalid params" do
             let(:title) { "" }
-            let(:locale){""}
-           
-
+            let(:locale) { "" }
 
             it "renders the new template" do
               post(:create, params:)
@@ -86,8 +83,7 @@ module Decidim
 
           context "with valid params" do
             let(:title) { "My title" }
-            let(:locale){"en"}
-            
+            let(:locale) { "en" }
 
             it "redirects to index" do
               expect(controller).to receive(:redirect_to) do |params|
@@ -106,7 +102,7 @@ module Decidim
               title: {
                 en: title
               },
-              locale: locale
+              locale:
             }
           end
 
@@ -115,7 +111,7 @@ module Decidim
 
             context "with invalid params" do
               let(:title) { "" }
-              let(:locale) {""}
+              let(:locale) { "" }
 
               it "renders the edit template" do
                 put(:update, params:)
@@ -126,7 +122,7 @@ module Decidim
 
             context "with valid params" do
               let(:title) { "My title" }
-              let(:locale) {"fr"}
+              let(:locale) { "fr" }
 
               it "redirects to index" do
                 expect(controller).to receive(:redirect_to) do |params|
@@ -141,7 +137,7 @@ module Decidim
           context "with non existing record" do
             let(:id) { -1 }
             let(:title) { "My title" }
-            let(:locale) {"en"}
+            let(:locale) { "en" }
 
             it "raise not found exception" do
               expect { put :update, params: }.to raise_error(ActiveRecord::RecordNotFound)

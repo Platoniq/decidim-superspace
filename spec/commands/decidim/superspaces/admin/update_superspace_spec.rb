@@ -13,19 +13,19 @@ module Decidim
         let(:title) { "Superspace title" }
         let(:superspace) { create(:superspace, organization:) }
         let(:invalid) { false }
-        let(:locale) {"en"}
-        let(:hero_image) {nil}
-        let(:assembly_ids) {nil}
-        let(:participatory_process_ids) {nil}
+        let(:locale) { "en" }
+        let(:hero_image) { nil }
+        let(:assembly_ids) { nil }
+        let(:participatory_process_ids) { nil }
         let(:form) do
           double(
             invalid?: invalid,
             title: { en: title },
             current_organization: organization,
-            hero_image: hero_image ,
-            locale: locale,
-            assembly_ids: assembly_ids,
-            participatory_process_ids: participatory_process_ids
+            hero_image:,
+            locale:,
+            assembly_ids:,
+            participatory_process_ids:
           )
         end
 
@@ -44,7 +44,7 @@ module Decidim
 
         context "when everything is ok" do
           let(:title) { "Superspace title updated" }
-          let(:locale) {"fr"}
+          let(:locale) { "fr" }
 
           it "updates the title" do
             subject.call
@@ -63,7 +63,7 @@ module Decidim
           it "traces the action", :versioning do
             expect(Decidim.traceability)
               .to receive(:update!)
-              .with(superspace, current_user, { title: { en: title }, locale: locale, hero_image: hero_image })
+              .with(superspace, current_user, { title: { en: title }, locale:, hero_image: })
               .and_call_original
 
             expect { subject.call }.to change(Decidim::ActionLog, :count)
