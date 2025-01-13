@@ -74,6 +74,8 @@ describe "Admin manages superspaces" do
           en: "My superspace"
         )
 
+        select "English", from: "superspace_locale"
+
         within ".new_superspace" do
           find("*[type=submit]").click
         end
@@ -91,6 +93,8 @@ describe "Admin manages superspaces" do
 
       it "cannot create an invalid superspace" do
         find(".card .item_show__header-title a.button.new").click
+
+        select "English", from: "superspace_locale"
 
         within ".new_superspace" do
           find("*[type=submit]").click
