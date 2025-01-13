@@ -20,7 +20,7 @@
                 <div class="check-box">
                   <label>
                    <%= form.check_box :assembly_ids, 
-                                  { multiple: true, label: false, checked:  @superspace.participatory_spaces.include?(assembly)}, 
+                                  { multiple: true, label: false, checked:  @superspace&.participatory_spaces&.include?(assembly) || false}, 
                                   assembly.id,
                                   nil
                                    %>
@@ -43,7 +43,7 @@
                 <div class="check-box">
                   <label>
                     <%= form.check_box :participatory_process_ids, 
-                                  { multiple: true, label: false, checked: @superspace.participatory_spaces.include?(process) }, 
+                                  { multiple: true, label: false, checked:@superspace&.participatory_spaces&.include?(process) || false }, 
                                   process.id
                                   %>
                     <span class="participatory-space-title">
