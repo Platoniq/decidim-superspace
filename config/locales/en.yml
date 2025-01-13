@@ -40,11 +40,11 @@ en:
       models:
         superspace:
           fields:
-            created_at: Created at
-            title: Title
-            locale: Language
             assemblies: Assemblies
+            created_at: Created at
+            locale: Language
             participatory_processes: Participatory Processes
+            title: Title
       superspaces:
         index:
           title: Superspaces
