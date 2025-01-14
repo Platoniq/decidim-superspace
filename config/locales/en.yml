@@ -40,8 +40,14 @@ en:
       models:
         superspace:
           fields:
+            assemblies: Assemblies
             created_at: Created at
+            locale: Language
+            participatory_processes: Participatory Processes
             title: Title
       superspaces:
         index:
           title: Superspaces
+        show:
+          assemblies: Assemblies
+          participatory_processes: Participatory Processes

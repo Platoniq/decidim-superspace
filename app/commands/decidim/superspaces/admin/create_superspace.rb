@@ -32,10 +32,26 @@ module Decidim
 
         attr_reader :form, :current_user
 
+        def create_associations(assemblies_ids, participatory_processes_ids)
+          Decidim::Assembly.where(id: assemblies_ids).each do |assembly|
+            @superspace.superspaces_participatory_spaces.create!(
+              participatory_space: assembly
+            )
+          end
+
+          Decidim::ParticipatoryProcess.where(id: participatory_processes_ids).each do |process|
+            @superspace.superspaces_participatory_spaces.create!(
+              participatory_space: process
+            )
+          end
+        end
+
         def create_superspace!
           attributes = {
             organization: form.current_organization,
-            title: form.title
+            title: form.title,
+            locale: form.locale,
+            hero_image: form.hero_image
           }
 
           @superspace = Decidim.traceability.create!(
@@ -43,6 +59,8 @@ module Decidim
             current_user,
             attributes
           )
+
+          create_associations(form.assembly_ids, form.participatory_process_ids)
         end
       end
     end

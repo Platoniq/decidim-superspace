@@ -10,6 +10,10 @@ module Decidim
       def resource_path
         Decidim::Superspaces::Engine.routes.url_helpers.superspace_path(model)
       end
+
+      def resource_image_url
+        model.attached_uploader(:hero_image).url
+      end
     end
   end
 end

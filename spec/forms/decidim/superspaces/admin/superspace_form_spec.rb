@@ -22,10 +22,22 @@ module Decidim
           }
         end
 
+        let(:locale) { "en" }
+
+        let(:hero_image) { nil }
+
+        let(:assembly_ids) { [] }
+
+        let(:participatory_process_ids) { [] }
+
         let(:attributes) do
           {
             "superspace" => {
-              "title" => title
+              "title" => title,
+              "locale" => locale,
+              "hero_image" => hero_image,
+              "assembly_ids" => assembly_ids,
+              "participatory_process_ids" => participatory_process_ids
             }
           }
         end
@@ -38,6 +50,12 @@ module Decidim
           let(:title) do
             { "en" => "" }
           end
+
+          it { is_expected.not_to be_valid }
+        end
+
+        context "when locale is missing" do
+          let(:locale) { "" }
 
           it { is_expected.not_to be_valid }
         end
