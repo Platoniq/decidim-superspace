@@ -49,7 +49,11 @@ describe "Admin manages superspaces" do
 
     context "when superspaces created" do
       let!(:superspaces) { create_list(:superspace, 5, organization:) }
+      let!(:assemblies) {create_list(:assembly, 2, organization:)}
+      let!(:participatory_processes){create_list(:participatory_process, 2, organization:)}
       let(:superspace) { superspaces.first }
+      let(:assembly) {assemblies.first}
+      let(:participatory_process) {participatory_processes.first}
 
       before do
         visit_superspaces_path
@@ -75,6 +79,10 @@ describe "Admin manages superspaces" do
         )
 
         select "English", from: "superspace_locale"
+
+        check "superspace_assembly_ids_#{assembly.id}"
+
+        check "superspace_participatory_process_ids_#{participatory_process.id}"
 
         within ".new_superspace" do
           find("*[type=submit]").click
