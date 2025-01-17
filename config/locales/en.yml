@@ -48,6 +48,12 @@ en:
       superspaces:
         index:
           title: Superspaces
+        language_selector:
+          change: Yes, change it
+          cookie_question: We detected you're using a language that is different from
+            the one assigned to the superspace. Would you like to change it?
+          cookie_subtitle: Your preference will be saved for 30 days in a cookie
+          keep: No, I want to keep keep my language
         show:
           assemblies: Assemblies
           participatory_processes: Participatory Processes
