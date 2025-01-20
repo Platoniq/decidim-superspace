@@ -7,7 +7,6 @@
 
 ![superspace logos](https://github.com/user-attachments/assets/f4d82284-7a99-4b4b-b34d-ad92b427e036)
 
-
 A participatory space to jointly manage assemblies and processes..
 
 ## Usage
