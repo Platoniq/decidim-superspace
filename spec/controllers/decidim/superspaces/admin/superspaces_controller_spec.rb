@@ -67,7 +67,7 @@ module Decidim
               title: {
                 en: title
               },
-              locale: locale,
+              locale:,
               assembly_ids: [assemblies.first.id],
               participatory_process_ids: [participatory_processes.first.id]
             }
@@ -105,7 +105,7 @@ module Decidim
               title: {
                 en: title
               },
-              locale: locale,
+              locale:,
               assembly_ids: [assemblies.first.id],
               participatory_process_ids: [participatory_processes.first.id]
             }
