@@ -12,6 +12,18 @@ module Decidim
         let(:user) { create(:user, :admin, :confirmed, organization:) }
         let(:superspace) { create(:superspace, organization:) }
 
+        context "when an exception is raised" do
+          before do
+            allow(superspace).to receive(:destroy!).and_raise(ActiveRecord::RecordNotDestroyed)
+          end
+
+          it "broadcasts invalid" do
+            expect do
+              subject.call
+            end.to broadcast(:invalid)
+          end
+        end
+
         it "destroys the superspace" do
           subject.call
           expect { superspace.reload }.to raise_error(ActiveRecord::RecordNotFound)

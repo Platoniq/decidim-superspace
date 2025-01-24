@@ -27,6 +27,14 @@ module Decidim
           it { is_expected.to be true }
         end
 
+        context "when scope is public and action is not allowed" do
+          let(:action) do
+            { scope: :public, action: :edit, subject: :superspace }
+          end
+
+          it { is_expected.to be false }
+        end
+
         context "when no user" do
           let(:user) { nil }
 
