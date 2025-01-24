@@ -19,7 +19,7 @@
       <h2 class="title-decorator"><%= t("assemblies", scope: "decidim.superspaces.superspaces.show") %></h2>
       <% superspace.assemblies.each do |assembly| %>
         <%= card_for assembly, highlight: true, size: :g %>
-      <% end %>      
+      <% end %>
     </section>
   <% end %>
 
@@ -28,7 +28,9 @@
       <h2 class="title-decorator"><%= t("participatory_processes", scope: "decidim.superspaces.superspaces.show") %></h2>
       <% superspace.participatory_processes.each do |process| %>
         <%= card_for process, highlight: true, size: :g %>
-      <% end %>      
+      <% end %>
     </section>
   <% end %>
 <% end %>
+
+<%= render partial: "language_selector" %>

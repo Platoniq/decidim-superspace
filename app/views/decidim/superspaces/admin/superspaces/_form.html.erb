@@ -14,16 +14,15 @@
         <div class="columns medium-6">
           <fieldset class="participatory-spaces-group">
             <legend><%= t("assemblies", scope: "decidim.superspaces.models.superspace.fields") %></legend>
-            
+
             <div class="check-boxes">
               <% Decidim::Assembly.where(organization: current_organization).each do |assembly| %>
                 <div class="check-box">
                   <label>
-                   <%= form.check_box :assembly_ids, 
-                                  { multiple: true, label: false, checked:  @superspace&.participatory_spaces&.include?(assembly) || false}, 
-                                  assembly.id,
-                                  nil
-                                   %>
+                   <%= form.check_box :assembly_ids,
+                                      { multiple: true, label: false, checked: @superspace&.participatory_spaces&.include?(assembly) || false },
+                                      assembly.id,
+                                      nil %>
                     <span class="participatory-space-title">
                       <%= translated_attribute(assembly.title) %>
                     </span>
@@ -37,15 +36,14 @@
         <div class="columns medium-6">
           <fieldset class="participatory-spaces-group">
             <legend><%= t("participatory_processes", scope: "decidim.superspaces.models.superspace.fields") %></legend>
-            
+
             <div class="check-boxes">
               <% Decidim::ParticipatoryProcess.where(organization: current_organization).each do |process| %>
                 <div class="check-box">
                   <label>
-                    <%= form.check_box :participatory_process_ids, 
-                                  { multiple: true, label: false, checked:@superspace&.participatory_spaces&.include?(process) || false }, 
-                                  process.id
-                                  %>
+                    <%= form.check_box :participatory_process_ids,
+                                       { multiple: true, label: false, checked:@superspace&.participatory_spaces&.include?(process) || false },
+                                       process.id %>
                     <span class="participatory-space-title">
                       <%= translated_attribute(process.title) %>
                     </span>

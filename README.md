@@ -5,6 +5,8 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/4d96d91a7d3b46294299/maintainability)](https://codeclimate.com/github/Platoniq/decidim-superspace/maintainability)
 [![Coverage Status](https://coveralls.io/repos/github/Platoniq/decidim-superspace/badge.svg?branch=main)](https://coveralls.io/github/Platoniq/decidim-superspace?branch=main)
 
+![superspace logos](https://github.com/user-attachments/assets/f4d82284-7a99-4b4b-b34d-ad92b427e036)
+
 A participatory space to jointly manage assemblies and processes..
 
 ## Usage
