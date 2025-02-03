@@ -26,7 +26,8 @@ And then execute:
 
 ```bash
 bundle
-bin/rails decidim_superspaces:install:migrations db:migrate
+bin/rails decidim_superspaces:install:migrations
+bin/rails db:migrate
 ```
 
 ## Contributing
