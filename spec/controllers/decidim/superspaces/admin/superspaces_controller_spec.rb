@@ -11,6 +11,8 @@ module Decidim
         let(:organization) { create(:organization) }
         let(:user) { create(:user, :admin, :confirmed, organization:) }
         let!(:superspaces) { create_list(:superspace, 10, organization:) }
+        let!(:assemblies) { create_list(:assembly, 10, organization:) }
+        let!(:participatory_processes) { create_list(:participatory_process, 10, organization:) }
 
         before do
           request.env["decidim.current_organization"] = organization
@@ -65,8 +67,9 @@ module Decidim
               title: {
                 en: title
               },
-              locale:
-
+              locale:,
+              assembly_ids: [assemblies.first.id],
+              participatory_process_ids: [participatory_processes.first.id]
             }
           end
 
@@ -102,7 +105,9 @@ module Decidim
               title: {
                 en: title
               },
-              locale:
+              locale:,
+              assembly_ids: [assemblies.first.id],
+              participatory_process_ids: [participatory_processes.first.id]
             }
           end
 
