@@ -1,2 +1,58 @@
 ---
 es:
+  decidim:
+    admin:
+      menu:
+        superspaces: Superespacios
+    superspaces:
+      admin:
+        models:
+          superspace:
+            name: Superespacio
+        superspaces:
+          actions:
+            confirm_destroy: '¿Estás seguro de que deseas eliminar este superespacio?'
+            destroy: Eliminar
+            edit: Editar
+            new: Nuevo superespacio
+            title: Acciones
+          create:
+            invalid: Ha habido un problema al crear este superespacio
+            success: Superespacio creado correctamente
+          destroy:
+            success: Superspacial eliminado correctamente
+          edit:
+            save: Actualizar
+            title: Editar superespacio
+          index:
+            title: Superespacios
+          new:
+            create: Crear
+            title: Crear superespacio
+          update:
+            invalid: Ha habido un problema al guardar el superespacio
+            success: Superespacio guardado correctamente
+      admin_log:
+        superspace:
+          create: "%{user_name} creó el superespacio %{resource_name}"
+          delete: "%{user_name} eliminó el superespacio %{resource_name}"
+          update: "%{user_name} actualizó el superespacio %{resource_name}"
+      models:
+        superspace:
+          fields:
+            assemblies: Asambleas
+            created_at: Creado el
+            locale: Idioma
+            participatory_processes: Procesos participativos
+            title: Título
+      superspaces:
+        index:
+          title: Superespacios
+        language_selector:
+          change: Sí, cámbialo
+          cookie_question: Hemos detectado que estás utilizando un idioma diferente al asignado al superespacio. ¿Desea cambiarlo?
+          cookie_subtitle: Su preferencia se guardará durante 30 días en una cookie
+          keep: No, quiero mantener mi idioma
+        show:
+          assemblies: Asambleas
+          participatory_processes: Procesos participativos
