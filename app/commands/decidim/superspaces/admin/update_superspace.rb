@@ -44,10 +44,10 @@ module Decidim
             hero_image: form.hero_image,
             locale: form.locale
           )
-          update_associations(assembly_ids, participatory_process_ids)
+          update_associations(assembly_ids, participatory_process_ids, conference_ids)
         end
 
-        def update_associations(assembly_ids, process_ids)
+        def update_associations(assembly_ids, process_ids, conference_ids)
           @superspace.superspaces_participatory_spaces.destroy_all
 
           if assembly_ids.present?
@@ -58,11 +58,20 @@ module Decidim
             end
           end
 
-          return if process_ids.blank?
+          if process_ids.present?
 
-          Decidim::ParticipatoryProcess.where(id: process_ids).each do |process|
+            Decidim::ParticipatoryProcess.where(id: process_ids).each do |process|
+              @superspace.superspaces_participatory_spaces.create!(
+                participatory_space: process
+              )
+            end
+          end
+
+          return if conference_ids.blank?
+
+          Decidim::Conference.where(id: conference_ids).each do |conference|
             @superspace.superspaces_participatory_spaces.create!(
-              participatory_space: process
+              participatory_space: conference
             )
           end
         end

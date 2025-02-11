@@ -42,6 +42,7 @@ en:
           fields:
             assemblies: Assemblies
             created_at: Created at
+            conferences: Conferences
             locale: Language
             participatory_processes: Participatory Processes
             title: Title

@@ -31,6 +31,10 @@ module Decidim
         find_spaces_by_type("Decidim::ParticipatoryProcess")
       end
 
+      def conferences
+        find_spaces_by_type("Decidim::Conference")
+      end
+
       def self.log_presenter_class_for(_log) = Decidim::Superspaces::AdminLog::SuperspacePresenter
 
       private
