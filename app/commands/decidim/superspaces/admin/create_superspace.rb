@@ -50,6 +50,7 @@ module Decidim
           attributes = {
             organization: form.current_organization,
             title: form.title,
+            description: form.description,
             locale: form.locale,
             hero_image: form.hero_image
           }
