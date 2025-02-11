@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     decidim-superspaces (0.1.0)
+      decidim-conferences (>= 0.28.0, < 0.29)
       decidim-core (>= 0.28.0, < 0.29)
 
 GEM
@@ -804,7 +805,6 @@ DEPENDENCIES
   byebug (~> 11.0)
   coveralls_reborn
   decidim (= 0.28.4)
-  decidim-conferences (= 0.28.4)
   decidim-dev (= 0.28.4)
   decidim-superspaces!
   faker (~> 3.2)
