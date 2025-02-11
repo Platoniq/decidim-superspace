@@ -17,6 +17,7 @@ module Decidim
         let(:hero_image) { nil }
         let(:assembly_ids) { nil }
         let(:participatory_process_ids) { nil }
+        let(:conference_ids) { nil }
         let(:form) do
           double(
             invalid?: invalid,
@@ -25,7 +26,8 @@ module Decidim
             hero_image:,
             locale:,
             assembly_ids:,
-            participatory_process_ids:
+            participatory_process_ids:,
+            conference_ids:
           )
         end
 
