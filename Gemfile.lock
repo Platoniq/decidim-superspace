@@ -191,6 +191,11 @@ GEM
     decidim-comments (0.28.4)
       decidim-core (= 0.28.4)
       redcarpet (~> 3.5, >= 3.5.1)
+    decidim-conferences (0.28.4)
+      decidim-core (= 0.28.4)
+      decidim-meetings (= 0.28.4)
+      wicked_pdf (~> 2.7)
+      wkhtmltopdf-binary (~> 0.12)
     decidim-core (0.28.4)
       active_link_to (~> 1.0)
       acts_as_list (~> 1.0)
@@ -799,6 +804,7 @@ DEPENDENCIES
   byebug (~> 11.0)
   coveralls_reborn
   decidim (= 0.28.4)
+  decidim-conferences (= 0.28.4)
   decidim-dev (= 0.28.4)
   decidim-superspaces!
   faker (~> 3.2)
