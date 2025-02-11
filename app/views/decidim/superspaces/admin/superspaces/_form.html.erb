@@ -53,6 +53,25 @@
             </div>
           </fieldset>
         </div>
+        <div class="columns medium-6">
+          <fieldset class="participatory-spaces-group">
+            <legend><%= t("conferences", scope: "decidim.superspaces.models.superspace.fields") %></legend>
+            <div class="check-boxes">
+              <% Decidim::Conference.where(organization: current_organization).each do |process| %>
+                <div class="check-box">
+                  <label>
+                    <%= form.check_box :conference_ids,
+                                       { multiple: true, label: false, checked:@superspace&.participatory_spaces&.include?(process) || false },
+                                       process.id %>
+                    <span class="participatory-space-title">
+                      <%= translated_attribute(process.title) %>
+                    </span>
+                  </label>
+                </div>
+              <% end %>
+            </div>
+          </fieldset>
+        </div>
       </div>
     </div>
   </div>
