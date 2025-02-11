@@ -37,6 +37,7 @@ module Decidim
         def update_superspace!
           assembly_ids = form.assembly_ids
           participatory_process_ids = form.participatory_process_ids
+          conference_ids = form.conference_ids
           Decidim.traceability.update!(
             superspace,
             current_user,
