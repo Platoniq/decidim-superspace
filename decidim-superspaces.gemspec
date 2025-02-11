@@ -28,4 +28,5 @@ Gem::Specification.new do |s|
   end
 
   s.add_dependency "decidim-core", Decidim::Superspaces::COMPAT_DECIDIM_VERSION
+  s.add_dependency "decidim-conferences", Decidim::Superspaces::COMPAT_DECIDIM_VERSION
 end
