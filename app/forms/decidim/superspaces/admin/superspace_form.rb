@@ -8,6 +8,7 @@ module Decidim
         include TranslatableAttributes
 
         translatable_attribute :title, String
+        translatable_attribute :description, String
         attribute :locale
         attribute :hero_image
         attribute :assembly_ids

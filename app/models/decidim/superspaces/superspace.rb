@@ -11,7 +11,7 @@ module Decidim
       has_one_attached :hero_image
       validates_upload :hero_image, uploader: Decidim::HeroImageUploader
 
-      translatable_fields :title
+      translatable_fields :title, :description
 
       has_many :superspaces_participatory_spaces, foreign_key: "decidim_superspaces_superspace_id", dependent: :destroy
 

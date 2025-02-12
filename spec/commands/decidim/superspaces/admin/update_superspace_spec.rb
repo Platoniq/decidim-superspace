@@ -11,6 +11,7 @@ module Decidim
         let(:organization) { create(:organization) }
         let(:current_user) { create(:user, organization:) }
         let(:title) { "Superspace title" }
+        let(:description) { "Superspace description" }
         let(:superspace) { create(:superspace, organization:) }
         let(:invalid) { false }
         let(:locale) { "en" }
@@ -22,6 +23,7 @@ module Decidim
           double(
             invalid?: invalid,
             title: { en: title },
+            description: { en: description },
             current_organization: organization,
             hero_image:,
             locale:,
@@ -65,7 +67,7 @@ module Decidim
           it "traces the action", :versioning do
             expect(Decidim.traceability)
               .to receive(:update!)
-              .with(superspace, current_user, { title: { en: title }, locale:, hero_image: })
+              .with(superspace, current_user, { title: { en: title }, description: { en: description }, locale:, hero_image: })
               .and_call_original
 
             expect { subject.call }.to change(Decidim::ActionLog, :count)

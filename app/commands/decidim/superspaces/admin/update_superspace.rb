@@ -42,6 +42,7 @@ module Decidim
             superspace,
             current_user,
             title: form.title,
+            description: form.description,
             hero_image: form.hero_image,
             locale: form.locale
           )

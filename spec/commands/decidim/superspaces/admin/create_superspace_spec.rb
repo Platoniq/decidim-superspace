@@ -11,6 +11,7 @@ module Decidim
         let(:organization) { create(:organization) }
         let(:current_user) { create(:user, organization:) }
         let(:title) { "Superspace title" }
+        let(:description) { "Superspace description" }
         let(:locale) { "en" }
         let(:hero_image) { nil }
         let(:assembly_ids) { nil }
@@ -21,6 +22,7 @@ module Decidim
           double(
             invalid?: invalid,
             title: { en: title },
+            description: { en: description },
             current_organization: organization,
             hero_image:,
             locale:,

@@ -11,6 +11,7 @@
 
 <% content_for :aside do %>
   <h1 class="title-decorator"><%= translated_attribute(superspace.title) %></h1>
+  <div class="rich-text-display"><%= translated_attribute(superspace.description).html_safe %></div>
 <% end %>
 
 <%= render layout: "layouts/decidim/shared/layout_two_col" do %>
