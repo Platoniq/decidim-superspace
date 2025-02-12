@@ -65,7 +65,7 @@ module Decidim
           it "traces the action", :versioning do
             expect(Decidim.traceability)
               .to receive(:update!)
-              .with(superspace, current_user, { title: { en: title }, description: {en: description}, locale:, hero_image: })
+              .with(superspace, current_user, { title: { en: title }, description: { en: description }, locale:, hero_image: })
               .and_call_original
 
             expect { subject.call }.to change(Decidim::ActionLog, :count)
