@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "spec_helper"
+require "decidim/conferences/test/factories"
 
 module Decidim
   module Superspaces
@@ -13,6 +14,7 @@ module Decidim
         let!(:superspaces) { create_list(:superspace, 10, organization:) }
         let!(:assemblies) { create_list(:assembly, 10, organization:) }
         let!(:participatory_processes) { create_list(:participatory_process, 10, organization:) }
+        let!(:conferences) { create_list(:conference, 10, organization:) }
 
         before do
           request.env["decidim.current_organization"] = organization
@@ -69,7 +71,8 @@ module Decidim
               },
               locale:,
               assembly_ids: [assemblies.first.id],
-              participatory_process_ids: [participatory_processes.first.id]
+              participatory_process_ids: [participatory_processes.first.id],
+              conference_ids: [conferences.first.id]
             }
           end
 
@@ -107,7 +110,8 @@ module Decidim
               },
               locale:,
               assembly_ids: [assemblies.first.id],
-              participatory_process_ids: [participatory_processes.first.id]
+              participatory_process_ids: [participatory_processes.first.id],
+              conference_ids: [conferences.first.id]
             }
           end
 

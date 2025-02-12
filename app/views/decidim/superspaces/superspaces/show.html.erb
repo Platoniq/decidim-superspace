@@ -31,6 +31,15 @@
       <% end %>
     </section>
   <% end %>
+
+  <% if superspace.conferences.any? %>
+    <section id="processes-grid" class="layout-main__section layout-main__heading">
+      <h2 class="title-decorator"><%= t("participatory_processes", scope: "decidim.superspaces.superspaces.show") %></h2>
+      <% superspace.conferences.each do |conference| %>
+        <%= card_for conference, highlight: true, size: :g %>
+      <% end %>
+    </section>
+  <% end %>
 <% end %>
 
 <%= render partial: "language_selector" %>

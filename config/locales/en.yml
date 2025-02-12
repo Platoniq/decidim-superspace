@@ -41,6 +41,7 @@ en:
         superspace:
           fields:
             assemblies: Assemblies
+            conferences: Conferences
             created_at: Created at
             locale: Language
             participatory_processes: Participatory Processes
