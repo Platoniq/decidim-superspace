@@ -41,6 +41,7 @@ es:
         superspace:
           fields:
             assemblies: Asambleas
+            conferences: Conferences
             created_at: Creado el
             locale: Idioma
             participatory_processes: Procesos participativos
