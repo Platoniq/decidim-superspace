@@ -1,0 +1,59 @@
+---
+bs:
+  decidim:
+    admin:
+      menu:
+        superspaces: Superspaces
+    superspaces:
+      admin:
+        models:
+          superspace:
+            name: Superspace
+        superspaces:
+          actions:
+            confirm_destroy: Are you sure you want to delete this superspace?
+            destroy: Delete
+            edit: Edit
+            new: New superspace
+            title: Actions
+          create:
+            invalid: There was a problem creating this superspace
+            success: Superspace successfully created
+          destroy:
+            success: Superspace successfully deleted
+          edit:
+            save: Update
+            title: Edit superspace
+          index:
+            title: Superspaces
+          new:
+            create: Create
+            title: Create superspace
+          update:
+            invalid: There was a problem saving the superspace
+            success: Superspace successfully saved
+      admin_log:
+        superspace:
+          create: "%{user_name} created the %{resource_name} superspace"
+          delete: "%{user_name} deleted the %{resource_name} superspace"
+          update: "%{user_name} updated the %{resource_name} superspace"
+      models:
+        superspace:
+          fields:
+            assemblies: Assemblies
+            conferences: Conferences
+            created_at: Created at
+            locale: Language
+            participatory_processes: Participatory Processes
+            title: Title
+      superspaces:
+        index:
+          title: Superspaces
+        language_selector:
+          change: Yes, change it
+          cookie_question: We detected you're using a language that is different from the one assigned to the superspace. Would you like to change it?
+          cookie_subtitle: Your preference will be saved for 30 days in a cookie
+          keep: No, I want to keep keep my language
+        show:
+          assemblies: Assemblies
+          participatory_processes: Participatory Processes
