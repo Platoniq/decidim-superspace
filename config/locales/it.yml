@@ -3,12 +3,12 @@ it:
   decidim:
     admin:
       menu:
-        superspaces: Superspaces
+        superspaces:
     superspaces:
       admin:
         models:
           superspace:
-            name: Superspace
+            name: Superspazio
         superspaces:
           actions:
             confirm_destroy: Are you sure you want to delete this superspace?
