@@ -135,33 +135,6 @@ module Decidim
           .uniq
       end
 
-      def assemblies_project_votes_query
-        Decidim::Budgets::Order.joins(budget: [:component])
-                               .where(budget: {
-                                        decidim_components: { id: assemblies_components.pluck(:id) }
-                                      })
-                               .pluck(:decidim_user_id)
-                               .uniq
-      end
-
-      def participatory_processes_project_votes_query
-        Decidim::Budgets::Order.joins(budget: [:component])
-                               .where(budget: {
-                                        decidim_components: { id: space_components.pluck(:id) }
-                                      })
-                               .pluck(:decidim_user_id)
-                               .uniq
-      end
-
-      def conferences_project_votes_query
-        Decidim::Budgets::Order.joins(budget: [:component])
-                               .where(budget: {
-                                        decidim_components: { id: conferences_components.pluck(:id) }
-                                      })
-                               .pluck(:decidim_user_id)
-                               .uniq
-      end
-
       def project_votes_query(components)
         return [] unless Decidim.module_installed?(:budgets)
 
