@@ -19,6 +19,7 @@ module Decidim
         let(:assembly_ids) { nil }
         let(:participatory_process_ids) { nil }
         let(:conference_ids) { nil }
+        let(:show_statistics) { false }
         let(:form) do
           double(
             invalid?: invalid,
@@ -29,7 +30,8 @@ module Decidim
             locale:,
             assembly_ids:,
             participatory_process_ids:,
-            conference_ids:
+            conference_ids:,
+            show_statistics:,
           )
         end
 
@@ -67,7 +69,7 @@ module Decidim
           it "traces the action", :versioning do
             expect(Decidim.traceability)
               .to receive(:update!)
-              .with(superspace, current_user, { title: { en: title }, description: { en: description }, locale:, hero_image: })
+              .with(superspace, current_user, { title: { en: title }, description: { en: description }, locale:, hero_image: , show_statistics: false })
               .and_call_original
 
             expect { subject.call }.to change(Decidim::ActionLog, :count)
