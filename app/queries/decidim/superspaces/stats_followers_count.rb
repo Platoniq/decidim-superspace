@@ -3,6 +3,10 @@
 module Decidim
   module Superspaces
     class StatsFollowersCount < Decidim::Query
+
+      #This class is responsible for calculating the number of followers of a superspace.
+      #The number of followers in a superspace is equal to the sum of the number of followers in all the participatory spaces that belong to the superspace.
+      
       def self.for(superspace)
         return 0 unless superspace.is_a?(Decidim::Superspaces::Superspace)
 
