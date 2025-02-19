@@ -2,6 +2,11 @@
 
 module Decidim
   module Superspaces
+    
+    # This class holds the logic to present superspace stats.
+    # It inherits from `Decidim::StatsPresenter` and overrides the methods
+    # needed to adapt the stats to the superspace context.
+
     class SuperspaceStatsPresenter < Decidim::StatsPresenter
       include Decidim::IconHelper
 
