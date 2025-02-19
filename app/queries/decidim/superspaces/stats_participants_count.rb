@@ -3,7 +3,7 @@
 module Decidim
   module Superspaces
     # TODO: Change the name of the class to StatsParticipantsCount
-    class StatsSuperspaceParticipantsCount < Decidim::Query
+    class StatsParticipantsCount < Decidim::Query
       def self.for(superspace)
         return 0 unless superspace.is_a?(Decidim::Superspaces::Superspace)
 
