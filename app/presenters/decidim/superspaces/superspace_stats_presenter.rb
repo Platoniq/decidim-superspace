@@ -17,7 +17,7 @@ module Decidim
         Decidim::Superspaces::StatsParticipantsCount.for(participatory_space)
       end
 
-      def participatory_space_followers_stats(conditions)
+      def participatory_space_followers_stats(_conditions)
         Decidim::Superspaces::StatsFollowersCount.for(participatory_space)
       end
 

@@ -14,12 +14,12 @@ module Decidim
       end
 
       def query
-        count=space_query + components_query
+        count = space_query + components_query
 
-        data = [{participatory_space: superspace.to_s, stat_title: "followers_count", stat_value: count}]
+        data = [{ participatory_space: superspace.to_s, stat_title: "followers_count", stat_value: count }]
 
         data.map do |d|
-           [d[:participatory_space].to_sym, d[:stat_title].to_sym, d[:stat_value].to_i]
+          [d[:participatory_space].to_sym, d[:stat_title].to_sym, d[:stat_value].to_i]
         end
       end
 
