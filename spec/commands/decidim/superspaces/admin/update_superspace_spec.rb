@@ -31,7 +31,7 @@ module Decidim
             assembly_ids:,
             participatory_process_ids:,
             conference_ids:,
-            show_statistics:,
+            show_statistics:
           )
         end
 
@@ -69,7 +69,7 @@ module Decidim
           it "traces the action", :versioning do
             expect(Decidim.traceability)
               .to receive(:update!)
-              .with(superspace, current_user, { title: { en: title }, description: { en: description }, locale:, hero_image: , show_statistics: false })
+              .with(superspace, current_user, { title: { en: title }, description: { en: description }, locale:, hero_image:, show_statistics: false })
               .and_call_original
 
             expect { subject.call }.to change(Decidim::ActionLog, :count)

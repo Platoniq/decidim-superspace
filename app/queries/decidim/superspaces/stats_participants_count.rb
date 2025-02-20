@@ -3,10 +3,9 @@
 module Decidim
   module Superspaces
     class StatsParticipantsCount < Decidim::Query
-
-      #This class is responsible for calculating the number of participants of a superspace.
-      #The number of participants in a superspace is equal to the sum of participants of the participatory spaces that belong to the superspace.
-      #If a user has participated in more than one participatory space, it will only be counted once.
+      # This class is responsible for calculating the number of participants of a superspace.
+      # The number of participants in a superspace is equal to the sum of participants of the participatory spaces that belong to the superspace.
+      # If a user has participated in more than one participatory space, it will only be counted once.
 
       def self.for(superspace)
         return 0 unless superspace.is_a?(Decidim::Superspaces::Superspace)
@@ -19,9 +18,9 @@ module Decidim
       end
 
       def query
-        participatory_process_class_name=Decidim::ParticipatoryProcess.class.name
-        assemblies_class_name=Decidim::Assembly.class.name
-        conferences_class_name=Decidim::Conference.class.name
+        participatory_process_class_name = Decidim::ParticipatoryProcess.class.name
+        assemblies_class_name = Decidim::Assembly.class.name
+        conferences_class_name = Decidim::Conference.class.name
 
         solution = [
           comments_query(participatory_process_class_name, participatory_space_ids),
@@ -47,7 +46,7 @@ module Decidim
           proposal_votes_query(conferences_proposals_components),
           survey_answer_query(space_components),
           survey_answer_query(assemblies_components),
-          survey_answer_query(conferences_components),
+          survey_answer_query(conferences_components)
         ].flatten.uniq.count
 
         data = [{ participatory_space: @superspace.to_s, stat_title: "participants_count", stat_value: solution }]
@@ -75,23 +74,23 @@ module Decidim
         return [] unless Decidim.module_installed?(:comments)
 
         Decidim::Comments::Comment
-        .where(decidim_participatory_space_type: class_name)
-        .where(decidim_participatory_space_id: ids)
-        .pluck(:decidim_author_id)
-        .uniq
+          .where(decidim_participatory_space_type: class_name)
+          .where(decidim_participatory_space_id: ids)
+          .pluck(:decidim_author_id)
+          .uniq
       end
 
       def debates_query(components)
         return [] unless Decidim.module_installed?(:debates)
 
         Decidim::Debates::Debate
-        .where(
-          component: components,
-          decidim_author_type: Decidim::UserBaseEntity.name
-        )
-        .not_hidden
-        .pluck(:decidim_author_id)
-        .uniq
+          .where(
+            component: components,
+            decidim_author_type: Decidim::UserBaseEntity.name
+          )
+          .not_hidden
+          .pluck(:decidim_author_id)
+          .uniq
       end
 
       def meetings_query(components)
@@ -128,7 +127,7 @@ module Decidim
 
         Decidim::Proposals::ProposalVote
           .where(
-            proposal: proposals_components,
+            proposal: proposals_components
           )
           .final
           .pluck(:decidim_author_id)

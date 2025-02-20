@@ -30,7 +30,7 @@ module Decidim
             assembly_ids:,
             participatory_process_ids:,
             conference_ids:,
-            show_statistics:,
+            show_statistics:
           )
         end
 

@@ -5,7 +5,7 @@ require "spec_helper"
 describe "User sees superspaces" do
   let!(:organization) { create(:organization) }
   let!(:user) { create(:user, :admin, :confirmed, organization:) }
-  let!(:superspaces) { create_list(:superspace, 10, organization: , show_statistics: true) }
+  let!(:superspaces) { create_list(:superspace, 10, organization:, show_statistics: true) }
   let!(:assemblies) { create_list(:assembly, 10, organization:) }
   let!(:participatory_processes) { create_list(:participatory_process, 10, organization:) }
   let!(:assembly) { assemblies.first }
@@ -56,7 +56,7 @@ describe "User sees superspaces" do
     it "doesn't render grid if the superspace is empty" do
       expect(page).to have_no_selector("#processes-grid")
       expect(page).to have_no_selector("#assemblies-grid")
-      expect(page).to have_selector("#statistics-grid")
+      expect(page).to have_css("#statistics-grid")
     end
 
     it "doesn't render statistics if the superspace show statistics is false" do
@@ -64,7 +64,6 @@ describe "User sees superspaces" do
       visit decidim_superspaces.superspace_path(superspaces.last)
 
       expect(page).to have_no_selector("#statistics-grid")
-
     end
   end
 end
