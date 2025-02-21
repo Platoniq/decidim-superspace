@@ -14,6 +14,7 @@ module Decidim
         attribute :assembly_ids
         attribute :participatory_process_ids
         attribute :conference_ids
+        attribute :show_statistics, Boolean
 
         validates :title, translatable_presence: true
         validates :locale, presence: true
