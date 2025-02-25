@@ -41,6 +41,13 @@
       <% end %>
     </section>
   <% end %>
+
+  <% if superspace.show_statistics %>
+    <section id="statistics-grid" class="layout-main__section layout-main__heading">
+        <h2 class="title-decorator"><%= t("statistics", scope: "decidim.superspaces.superspaces.show") %></h2>
+          <%= cell("decidim/statistics",superspace.statistics) %>
+    </section>
+  <% end %>
 <% end %>
 
 <%= render partial: "language_selector" %>
