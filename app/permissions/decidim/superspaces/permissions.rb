@@ -4,7 +4,7 @@ module Decidim
   module Superspaces
     class Permissions < Decidim::DefaultPermissions
       def permissions
-        return permission_action unless user
+        # return permission_action unless user
         return Decidim::Superspaces::Admin::Permissions.new(user, permission_action, context).permissions if permission_action.scope == :admin
 
         superspace_action?
