@@ -8,11 +8,9 @@ module Decidim
       helper_method :collection, :superspace
 
       def index
-        enforce_permission_to :list, :superspace
       end
 
       def show
-        enforce_permission_to :read, :superspace, superspace:
       end
 
       private
