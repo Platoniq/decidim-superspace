@@ -42,7 +42,7 @@ module Decidim
             { scope: :public, action: :list, subject: :superspace }
           end
 
-          it_behaves_like "permission is not set"
+          it { is_expected.to be true }
         end
 
         context "when subject is a random one" do
