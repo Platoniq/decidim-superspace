@@ -44,7 +44,8 @@ module Decidim
             title: form.title,
             description: form.description,
             hero_image: form.hero_image,
-            locale: form.locale
+            locale: form.locale,
+            show_statistics: form.show_statistics
           )
           update_associations(assembly_ids, participatory_process_ids, conference_ids)
         end

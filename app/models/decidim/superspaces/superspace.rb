@@ -35,6 +35,10 @@ module Decidim
         find_spaces_by_type("Decidim::Conference")
       end
 
+      def statistics
+        Decidim::Superspaces::SuperspaceStatsPresenter.new(self).collection
+      end
+
       def self.log_presenter_class_for(_log) = Decidim::Superspaces::AdminLog::SuperspacePresenter
 
       private
