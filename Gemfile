@@ -12,6 +12,7 @@ require_relative "#{base_path}lib/decidim/superspaces/version"
 
 gem "decidim", Decidim::Superspaces::DECIDIM_VERSION
 gem "decidim-conferences", Decidim::Superspaces::COMPAT_DECIDIM_VERSION
+gem "deface"
 gem "decidim-superspaces", path: "."
 
 gem "bootsnap", "~> 1.4"
