@@ -6,11 +6,12 @@ Deface::Override.new(virtual_path: "decidim/assemblies/assemblies/show",
                      text: <<-ERB
                             <% if current_participatory_space.superspace.present? %>
                                 <section class="participatory-space__block-reference">
-                                    This space is part of the
-                                    <%= link_to translated_attribute(current_participatory_space.superspace.title),#{" "}
-                                    decidim_superspaces.superspace_path(current_participatory_space.superspace),
-                                    class: "text-secondary underline" %>
-                                    superspace.
+                                    <% superspace_link = link_to(
+                                        translated_attribute(current_participatory_space.superspace.title),
+                                        decidim_superspaces.superspace_path(current_participatory_space.superspace),
+                                        class: "text-secondary underline"
+                                    ) %>
+                                    <%= t("part_of", superspace: superspace_link, scope:"decidim.superspaces.participatory_spaces.show").html_safe %>
                                 </section>
                             <% end %>
                      ERB
@@ -21,11 +22,12 @@ Deface::Override.new(virtual_path: "decidim/participatory_processes/participator
                      text: <<-ERB
                             <% if current_participatory_space.superspace.present? %>
                                 <section class="participatory-space__block-reference">
-                                    This space is part of the
-                                    <%= link_to translated_attribute(current_participatory_space.superspace.title),#{" "}
-                                    decidim_superspaces.superspace_path(current_participatory_space.superspace),
-                                    class: "text-secondary underline" %>
-                                    superspace.
+                                    <% superspace_link = link_to(
+                                        translated_attribute(current_participatory_space.superspace.title),
+                                        decidim_superspaces.superspace_path(current_participatory_space.superspace),
+                                        class: "text-secondary underline"
+                                    ) %>
+                                    <%= t("part_of", superspace: superspace_link, scope:"decidim.superspaces.participatory_spaces.show").html_safe %>
                                 </section>
                             <% end %>
                      ERB
@@ -36,11 +38,12 @@ Deface::Override.new(virtual_path: "decidim/conferences/conferences/show",
                      text: <<-ERB
                             <% if current_participatory_space.superspace.present? %>
                                 <section class="participatory-space__block-reference">
-                                    This space is part of the
-                                    <%= link_to translated_attribute(current_participatory_space.superspace.title),#{" "}
-                                    decidim_superspaces.superspace_path(current_participatory_space.superspace),
-                                    class: "text-secondary underline" %>
-                                    superspace.
+                                    <% superspace_link = link_to(
+                                        translated_attribute(current_participatory_space.superspace.title),
+                                        decidim_superspaces.superspace_path(current_participatory_space.superspace),
+                                        class: "text-secondary underline"
+                                    ) %>
+                                    <%= t("part_of", superspace: superspace_link, scope:"decidim.superspaces.participatory_spaces.show").html_safe %>
                                 </section>
                             <% end %>
                      ERB
