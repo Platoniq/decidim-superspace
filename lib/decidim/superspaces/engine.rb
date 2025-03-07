@@ -15,9 +15,9 @@ module Decidim
       end
 
       config.to_prepare do
-        Decidim::Assembly.include(Decidim::Superspaces::CheckSuperspace)
-        Decidim::ParticipatoryProcess.include(Decidim::Superspaces::CheckSuperspace)
-        Decidim::Conference.include(Decidim::Superspaces::CheckSuperspace)
+        Decidim::Assembly.include(Decidim::Superspaces::HasSuperspace)
+        Decidim::ParticipatoryProcess.include(Decidim::Superspaces::HasSuperspace)
+        Decidim::Conference.include(Decidim::Superspaces::HasSuperspace)
       end
 
       initializer "decidim_superspaces.register_resources" do
