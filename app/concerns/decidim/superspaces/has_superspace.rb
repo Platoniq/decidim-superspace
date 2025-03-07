@@ -2,7 +2,7 @@
 
 module Decidim
   module Superspaces
-    module CheckSuperspace
+    module HasSuperspace
       extend ActiveSupport::Concern
 
       included do
