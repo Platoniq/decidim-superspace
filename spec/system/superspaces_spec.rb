@@ -7,9 +7,12 @@ describe "User sees superspaces" do
   let!(:user) { create(:user, :admin, :confirmed, organization:) }
   let!(:superspaces) { create_list(:superspace, 10, organization:) }
   let!(:assemblies) { create_list(:assembly, 10, organization:) }
+  let!(:conferences) { create_list(:conference, 10, organization:) }
   let!(:participatory_processes) { create_list(:participatory_process, 10, organization:) }
   let!(:assembly) { assemblies.first }
   let!(:participatory_space) { participatory_processes.first }
+  let!(:conference) { conferences.first }
+  let!(:conference_superspace) { create(:superspaces_participatory_space, superspace: superspaces.first, participatory_space: conference) }
   let!(:assembly_superspace) { create(:superspaces_participatory_space, superspace: superspaces.first, participatory_space: assembly) }
   let!(:process_superspace) { create(:superspaces_participatory_space, superspace: superspaces.first, participatory_space:) }
 
@@ -53,6 +56,36 @@ describe "User sees superspaces" do
     it "doesn't render grid if the superspace is empty" do
       expect(page).to have_no_selector("#processes-grid")
       expect(page).to have_no_selector("#assemblies-grid")
+    end
+  end
+
+  context "when visiting assembly path" do
+    before do
+      visit decidim_assemblies.assembly_path(assembly)
+    end
+
+    it "renders the superspace reference" do
+      expect(page).to have_content("This space is part of the #{superspaces.first.title["en"]} superspace.")
+    end
+  end
+
+  context "when visiting participatory process path" do
+    before do
+      visit decidim_participatory_processes.participatory_process_path(participatory_space)
+    end
+
+    it "renders the superspace reference" do
+      expect(page).to have_content("This space is part of the #{superspaces.first.title["en"]} superspace.")
+    end
+  end
+
+  context "when visiting conference path" do
+    before do
+      visit decidim_conferences.conference_path(conference)
+    end
+
+    it "renders the superspace reference" do
+      expect(page).to have_content("This space is part of the #{superspaces.first.title["en"]} superspace.")
     end
   end
 end

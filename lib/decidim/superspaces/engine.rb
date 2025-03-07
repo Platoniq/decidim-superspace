@@ -14,6 +14,12 @@ module Decidim
         root to: "superspaces#index"
       end
 
+      config.to_prepare do
+        Decidim::Assembly.include(Decidim::Superspaces::HasSuperspace)
+        Decidim::ParticipatoryProcess.include(Decidim::Superspaces::HasSuperspace)
+        Decidim::Conference.include(Decidim::Superspaces::HasSuperspace)
+      end
+
       initializer "decidim_superspaces.register_resources" do
         Decidim.register_resource(:superspace) do |resource|
           resource.model_class_name = "Decidim::Superspaces::Superspace"
