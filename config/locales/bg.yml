@@ -46,6 +46,9 @@ bg:
             locale: Language
             participatory_processes: Participatory Processes
             title: Title
+      participatory_spaces:
+        show:
+          part_of: This space is part of the %{superspace} superspace.
       superspaces:
         index:
           title: Superspaces
