@@ -46,6 +46,9 @@ es:
             locale: Idioma
             participatory_processes: Procesos participativos
             title: Título
+      participatory_spaces:
+        show:
+          part_of: This space is part of the %{superspace} superspace.
       superspaces:
         index:
           title: Superespacios
