@@ -9,6 +9,19 @@ module Decidim
     class SuperspaceStatsPresenter < Decidim::StatsPresenter
       include Decidim::IconHelper
 
+      def collection
+        highlighted_stats = participatory_space_participants_stats
+        highlighted_stats.concat(participatory_space_followers_stats)
+        highlighted_stats.concat(component_stats(priority: StatsRegistry::HIGH_PRIORITY))
+        highlighted_stats.concat(component_stats(priority: StatsRegistry::MEDIUM_PRIORITY))
+        highlighted_stats.concat(comments_stats(participatory_space_sym))
+        highlighted_stats = highlighted_stats.reject(&:empty?)
+        highlighted_stats = highlighted_stats.reject { |_stat_manifest, _stat_title, stat_number| stat_number.zero? }
+        grouped_highlighted_stats = highlighted_stats.group_by(&:first)
+
+        statistics(grouped_highlighted_stats)
+      end
+
       private
 
       def participatory_space = __getobj__
@@ -21,7 +34,7 @@ module Decidim
         Decidim::Superspaces::StatsParticipantsCount.for(participatory_space)
       end
 
-      def participatory_space_followers_stats(_conditions)
+      def participatory_space_followers_stats
         Decidim::Superspaces::StatsFollowersCount.for(participatory_space)
       end
 
