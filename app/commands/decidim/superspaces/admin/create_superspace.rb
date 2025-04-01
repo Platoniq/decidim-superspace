@@ -58,7 +58,8 @@ module Decidim
             title: form.title,
             description: form.description,
             locale: form.locale,
-            hero_image: form.hero_image
+            hero_image: form.hero_image,
+            show_statistics: form.show_statistics
           }
 
           @superspace = Decidim.traceability.create!(
