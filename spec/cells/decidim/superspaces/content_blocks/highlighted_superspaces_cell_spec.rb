@@ -10,7 +10,7 @@ describe Decidim::Superspaces::ContentBlocks::HighlightedSuperspacesCell, type: 
   let!(:superspaces) { create_list(:superspace, 8, organization:) }
   let(:settings) { {} }
 
-  let(:highlighted_superspaces) { subject.find_by(id: "highlighted-superspaces") }
+  let(:highlighted_superspaces) { subject.find(id: "highlighted-superspaces") }
 
   controller Decidim::PagesController
 
