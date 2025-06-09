@@ -6,12 +6,12 @@ en:
         superspaces: Superspaces
     superspaces:
       admin:
-        models:
-          superspace:
-            name: Superspace
         content_blocks:
           highlighted_superspaces:
             max_results: Maximum amount of elements to show
+        models:
+          superspace:
+            name: Superspace
         superspaces:
           actions:
             confirm_destroy: Are you sure you want to delete this superspace?
@@ -54,7 +54,7 @@ en:
             title: Title
       pages:
         home:
-          highlighted_superspaces: 
+          highlighted_superspaces:
             active_spaces: Active superspaces
             see_all_spaces: See all superspaces
       participatory_spaces:
