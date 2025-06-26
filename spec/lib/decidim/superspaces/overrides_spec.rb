@@ -6,19 +6,19 @@ checksums = [
   {
     package: "decidim-participatory_processes",
     files: {
-      "/app/views/decidim/participatory_processes/participatory_processes/show.html.erb" => "aef7b518b8ac648a3cdb3e34c7351c8b"
+      "/app/views/decidim/participatory_processes/participatory_processes/show.html.erb" => "cd6ec19aeabe7cdcbfd17021b89ef268"
     }
   },
   {
     package: "decidim-assemblies",
     files: {
-      "/app/views/decidim/assemblies/assemblies/show.html.erb" => "5d776b77fdf04061d2e32818a4d5033e"
+      "/app/views/decidim/assemblies/assemblies/show.html.erb" => "18d3ce456c24e0dcc958ed5d8cb2960b"
     }
   },
   {
     package: "decidim-conferences",
     files: {
-      "/app/views/decidim/conferences/conferences/show.html.erb" => "f473d522ddc4c5f3352f3fc55cffdd7d"
+      "/app/views/decidim/conferences/conferences/show.html.erb" => "441608dc88131043a6fcaca81edc18d1"
     }
   }
 ]
