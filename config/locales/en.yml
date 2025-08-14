@@ -38,6 +38,11 @@ en:
             success: Superspace successfully saved
           configure:
             title: Configure superspace
+            participatory_spaces_title: Participatory Spaces Order
+            active_participatory_spaces: Active Participatory Spaces
+            inactive_participatory_spaces: Inactive Participatory Spaces
+            no_active_spaces: No active participatory spaces
+            no_inactive_spaces: All participatory spaces are active
             assembly: Assembly
             conference: Conference
             participatory_process: Participatory process
@@ -80,3 +85,4 @@ en:
           conferences: Conferences
           participatory_processes: Participatory Processes
           statistics: Statistics
+          no_active_participatory_spaces: There are no active participatory spaces

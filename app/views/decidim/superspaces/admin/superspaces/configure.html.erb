@@ -12,15 +12,24 @@
         <div class="cell">
           <div class="card">
             <div class="card-section">
-              <% if @participatory_space_types.present? %>
-                <ul class="draggable-list js-connect js-list-actives" data-sort-url="<%= update_spaces_order_superspace_path(@superspace) %>">
-                  <% @participatory_space_types.each do |space_type| %>
-                    <%= cell "decidim/superspaces/admin/participatory_space_type", space_type %>
-                  <% end %>
-                </ul>
-              <% else %>
-                <p class="text-muted"><%= t(".no_participatory_spaces", default: "No hay espacios participativos asociados a este superespacio.") %></p>
-              <% end %>
+              <h5 class="draggable-list-title"><%= t(".active_participatory_spaces") %></h5>
+              <ul class="draggable-list js-connect js-list-actives" data-sort-url="<%= update_spaces_order_superspace_path(@superspace) %>">
+                <% @active_space_types.each do |space_type| %>
+                  <%= cell "decidim/superspaces/admin/participatory_space_type", space_type %>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="cell">
+          <div class="card">
+            <div class="card-section">
+              <h5 class="draggable-list-title"><%= t(".inactive_participatory_spaces") %></h5>
+              <ul class="draggable-list js-connect js-list-available">
+                <% @inactive_space_types.each do |space_type| %>
+                  <%= cell "decidim/superspaces/admin/participatory_space_type", space_type %>
+                <% end %>
+              </ul>
             </div>
           </div>
         </div>

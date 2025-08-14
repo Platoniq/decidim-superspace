@@ -16,6 +16,16 @@ es:
             edit: Editar
             new: Nuevo superespacio
             title: Acciones
+          configure:
+            title: Configurar espacios participativos
+            participatory_spaces_title: Orden de Tipos de Espacios Participativos
+            active_participatory_spaces: Espacios Participativos Activos
+            inactive_participatory_spaces: Espacios Participativos Inactivos
+            no_active_spaces: No hay espacios participativos activos
+            no_inactive_spaces: Todos los espacios participativos están activos
+            assembly: Asamblea
+            conference: Conferencia
+            participatory_process: Proceso participativo
           create:
             invalid: Ha habido un problema al crear este superespacio
             success: Superespacio creado correctamente
@@ -59,3 +69,4 @@ es:
           conferences: Conferences
           participatory_processes: Procesos participativos
           statistics: Estadísticas
+          no_active_participatory_spaces: No hay espacios participativos activos

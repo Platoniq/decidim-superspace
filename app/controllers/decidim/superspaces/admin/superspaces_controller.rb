@@ -71,7 +71,7 @@ module Decidim
         def configure
           enforce_permission_to :update, :superspace
           @superspace = Superspace.find(params[:id])
-          @participatory_space_types = build_participatory_space_types
+          @active_space_types, @inactive_space_types = build_participatory_space_types
         end
 
         def update_spaces_order
@@ -90,42 +90,42 @@ module Decidim
         private
 
         def build_participatory_space_types
-          types = []
+          all_types = []
 
           if @superspace.assemblies.any?
-            types << {
+            all_types << {
               type: 'assemblies',
               count: @superspace.assemblies.count
             }
           end
 
           if @superspace.participatory_processes.any?
-            types << {
+            all_types << {
               type: 'participatory_processes',
               count: @superspace.participatory_processes.count
             }
           end
 
           if @superspace.conferences.any?
-            types << {
+            all_types << {
               type: 'conferences',
               count: @superspace.conferences.count
             }
           end
 
+          active_order = @superspace.participatory_spaces_order || []
 
-          if @superspace.participatory_spaces_order.present?
-            ordered_types = []
-            @superspace.participatory_spaces_order.each do |type_id|
-              type_obj = types.find { |t| t[:id] == type_id }
-              ordered_types << type_obj if type_obj
-            end
-
-            unordered_types = types.reject { |t| @superspace.participatory_spaces_order.include?(t[:id]) }
-            ordered_types + unordered_types
-          else
-            types
+          # Active types in the specified order
+          active_types = []
+          active_order.each do |type|
+            type_obj = all_types.find { |t| t[:type] == type }
+            active_types << type_obj if type_obj
           end
+
+          # Inactive types (not in the active order)
+          inactive_types = all_types.reject { |t| active_order.include?(t[:type]) }
+
+          [active_types, inactive_types]
         end
 
         def superspace

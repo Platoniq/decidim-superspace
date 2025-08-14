@@ -20,10 +20,6 @@ module Decidim
           model[:count]
         end
 
-        def type_id
-          model[:id]
-        end
-
         def type_description
           "#{type_count} #{t("decidim.superspaces.admin.superspaces.configure.#{type_name.singularize}").pluralize(type_count)}"
         end
