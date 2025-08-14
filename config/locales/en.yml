@@ -14,12 +14,22 @@ en:
             name: Superspace
         superspaces:
           actions:
+            configure: Configure
             confirm_destroy: Are you sure you want to delete this superspace?
             destroy: Delete
             edit: Edit
             new: New superspace
             title: Actions
-            configure: Configure
+          configure:
+            active_participatory_spaces: Active Participatory Spaces
+            assembly: Assembly
+            conference: Conference
+            inactive_participatory_spaces: Inactive Participatory Spaces
+            no_active_spaces: No active participatory spaces
+            no_inactive_spaces: All participatory spaces are active
+            participatory_process: Participatory process
+            participatory_spaces_title: Participatory Spaces Order
+            title: Configure superspace
           create:
             invalid: There was a problem creating this superspace
             success: Superspace successfully created
@@ -36,16 +46,6 @@ en:
           update:
             invalid: There was a problem saving the superspace
             success: Superspace successfully saved
-          configure:
-            title: Configure superspace
-            participatory_spaces_title: Participatory Spaces Order
-            active_participatory_spaces: Active Participatory Spaces
-            inactive_participatory_spaces: Inactive Participatory Spaces
-            no_active_spaces: No active participatory spaces
-            no_inactive_spaces: All participatory spaces are active
-            assembly: Assembly
-            conference: Conference
-            participatory_process: Participatory process
       admin_log:
         superspace:
           create: "%{user_name} created the %{resource_name} superspace"
@@ -83,6 +83,6 @@ en:
         show:
           assemblies: Assemblies
           conferences: Conferences
+          no_active_participatory_spaces: There are no active participatory spaces
           participatory_processes: Participatory Processes
           statistics: Statistics
-          no_active_participatory_spaces: There are no active participatory spaces

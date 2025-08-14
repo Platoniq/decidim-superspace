@@ -11,21 +11,22 @@ es:
             name: Superespacio
         superspaces:
           actions:
-            confirm_destroy: '¿Estás seguro de que deseas eliminar este superespacio?'
+            configure: Configurar
+            confirm_destroy: "¿Estás seguro de que deseas eliminar este superespacio?"
             destroy: Eliminar
             edit: Editar
             new: Nuevo superespacio
             title: Acciones
           configure:
-            title: Configurar espacios participativos
-            participatory_spaces_title: Orden de Tipos de Espacios Participativos
             active_participatory_spaces: Espacios Participativos Activos
+            assembly: Asamblea
+            conference: Conferencia
             inactive_participatory_spaces: Espacios Participativos Inactivos
             no_active_spaces: No hay espacios participativos activos
             no_inactive_spaces: Todos los espacios participativos están activos
-            assembly: Asamblea
-            conference: Conferencia
             participatory_process: Proceso participativo
+            participatory_spaces_title: Orden de Tipos de Espacios Participativos
+            title: Configurar espacios participativos
           create:
             invalid: Ha habido un problema al crear este superespacio
             success: Superespacio creado correctamente
@@ -61,12 +62,13 @@ es:
           title: Superespacios
         language_selector:
           change: Sí, cámbialo
-          cookie_question: Hemos detectado que estás utilizando un idioma diferente al asignado al superespacio. ¿Desea cambiarlo?
+          cookie_question: Hemos detectado que estás utilizando un idioma diferente
+            al asignado al superespacio. ¿Desea cambiarlo?
           cookie_subtitle: Su preferencia se guardará durante 30 días en una cookie
           keep: No, quiero mantener mi idioma
         show:
           assemblies: Asambleas
           conferences: Conferences
+          no_active_participatory_spaces: No hay espacios participativos activos
           participatory_processes: Procesos participativos
           statistics: Estadísticas
-          no_active_participatory_spaces: No hay espacios participativos activos
