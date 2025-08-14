@@ -37,6 +37,10 @@
                 <%= icon_link_to "pencil-line", edit_superspace_path(superspace), t("actions.edit", scope: "decidim.superspaces.admin.superspaces"), class: "action-icon--edit" %>
               <% end %>
 
+              <% if allowed_to? :update, :superspace, superspace: superspace %>
+                  <%= icon_link_to "settings-4-line", configure_superspace_path(superspace), t("actions.configure", scope: "decidim.superspaces.admin.superspaces"), class: "action-icon--configure" %>
+              <% end %>
+
               <% if allowed_to? :destroy, :superspace, superspace: superspace %>
                 <%= icon_link_to "delete-bin-line", superspace_path(superspace), t("actions.destroy", scope: "decidim.superspaces.admin.superspaces"), method: :delete, class: "action-icon--remove", data: { confirm: t("actions.confirm_destroy", scope: "decidim.superspaces.admin.superspaces") } %>
               <% end %>

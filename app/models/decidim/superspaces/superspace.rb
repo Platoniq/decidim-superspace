@@ -19,6 +19,10 @@ module Decidim
                  foreign_key: "decidim_organization_id",
                  class_name: "Decidim::Organization"
 
+      serialize :participatory_spaces_order, JSON
+
+      DEFAULT_PARTICIPATORY_SPACES_ORDER = ["assemblies", "participatory_processes", "conferences"].freeze
+
       def participatory_spaces
         superspaces_participatory_spaces.map(&:participatory_space)
       end
@@ -40,6 +44,10 @@ module Decidim
       end
 
       def self.log_presenter_class_for(_log) = Decidim::Superspaces::AdminLog::SuperspacePresenter
+
+      def participatory_spaces_order
+        super.presence || DEFAULT_PARTICIPATORY_SPACES_ORDER
+      end
 
       private
 

@@ -7,7 +7,7 @@ module Decidim
       class SuperspacesController < ApplicationController
         include TranslatableAttributes
 
-        helper_method :superspaces, :superspace
+        helper_method :superspaces, :superspace, :participatory_spaces_sort_url
 
         def index
           enforce_permission_to :index, :superspace
@@ -68,7 +68,65 @@ module Decidim
           end
         end
 
+        def configure
+          enforce_permission_to :update, :superspace
+          @superspace = Superspace.find(params[:id])
+          @participatory_space_types = build_participatory_space_types
+        end
+
+        def update_spaces_order
+          enforce_permission_to :update, :superspace
+
+          @superspace = Superspace.find(params[:id])
+          order_types = params[:ids_order]
+
+          if @superspace.update(participatory_spaces_order: order_types)
+            head :ok
+          else
+            head :unprocessable_entity
+          end
+        end
+
         private
+
+        def build_participatory_space_types
+          types = []
+
+          if @superspace.assemblies.any?
+            types << {
+              type: 'assemblies',
+              count: @superspace.assemblies.count
+            }
+          end
+
+          if @superspace.participatory_processes.any?
+            types << {
+              type: 'participatory_processes',
+              count: @superspace.participatory_processes.count
+            }
+          end
+
+          if @superspace.conferences.any?
+            types << {
+              type: 'conferences',
+              count: @superspace.conferences.count
+            }
+          end
+
+
+          if @superspace.participatory_spaces_order.present?
+            ordered_types = []
+            @superspace.participatory_spaces_order.each do |type_id|
+              type_obj = types.find { |t| t[:id] == type_id }
+              ordered_types << type_obj if type_obj
+            end
+
+            unordered_types = types.reject { |t| @superspace.participatory_spaces_order.include?(t[:id]) }
+            ordered_types + unordered_types
+          else
+            types
+          end
+        end
 
         def superspace
           @superspace ||= filtered_superspaces.find(params[:id])

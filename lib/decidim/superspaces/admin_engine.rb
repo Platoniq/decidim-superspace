@@ -10,7 +10,12 @@ module Decidim
       paths["lib/tasks"] = nil
 
       routes do
-        resources :superspaces
+        resources :superspaces do
+          member do
+            get :configure
+            put :update_spaces_order
+          end
+        end
         root to: "superspaces#index"
       end
 

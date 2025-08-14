@@ -15,33 +15,23 @@
 <% end %>
 
 <%= render layout: "layouts/decidim/shared/layout_two_col" do %>
-  <% if superspace.assemblies.any? %>
-    <section id="assemblies-grid" class="layout-main__section layout-main__heading">
-      <h2 class="title-decorator"><%= t("assemblies", scope: "decidim.superspaces.superspaces.show") %></h2>
-      <% superspace.assemblies.each do |assembly| %>
-        <%= card_for assembly, highlight: true, size: :g %>
-      <% end %>
-    </section>
+  <% ordered_types = superspace.participatory_spaces_order || [] %>
+  <% ordered_types.each do |type| %>
+    <% spaces = case type
+      when "assemblies" then superspace.assemblies
+      when "participatory_processes" then superspace.participatory_processes
+      when "conferences" then superspace.conferences
+      else []
+    end %>
+    <% if spaces.any? %>
+      <section id="<%= type %>-grid" class="layout-main__section layout-main__heading">
+        <h2 class="title-decorator"><%= t(type, scope: "decidim.superspaces.superspaces.show") %></h2>
+        <% spaces.each do |space| %>
+          <%= card_for space, highlight: true, size: :g %>
+        <% end %>
+      </section>
+    <% end %>
   <% end %>
-
-  <% if superspace.participatory_processes.any? %>
-    <section id="processes-grid" class="layout-main__section layout-main__heading">
-      <h2 class="title-decorator"><%= t("participatory_processes", scope: "decidim.superspaces.superspaces.show") %></h2>
-      <% superspace.participatory_processes.each do |process| %>
-        <%= card_for process, highlight: true, size: :g %>
-      <% end %>
-    </section>
-  <% end %>
-
-  <% if superspace.conferences.any? %>
-    <section id="conferences-grid" class="layout-main__section layout-main__heading">
-      <h2 class="title-decorator"><%= t("conferences", scope: "decidim.superspaces.superspaces.show") %></h2>
-      <% superspace.conferences.each do |conference| %>
-        <%= card_for conference, highlight: true, size: :g %>
-      <% end %>
-    </section>
-  <% end %>
-
   <% if superspace.show_statistics %>
     <section id="statistics-grid" class="layout-main__section layout-main__heading">
         <h2 class="title-decorator"><%= t("statistics", scope: "decidim.superspaces.superspaces.show") %></h2>

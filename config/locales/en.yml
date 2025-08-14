@@ -19,6 +19,7 @@ en:
             edit: Edit
             new: New superspace
             title: Actions
+            configure: Configure
           create:
             invalid: There was a problem creating this superspace
             success: Superspace successfully created
@@ -35,6 +36,11 @@ en:
           update:
             invalid: There was a problem saving the superspace
             success: Superspace successfully saved
+          configure:
+            title: Configure superspace
+            assembly: Assembly
+            conference: Conference
+            participatory_process: Participatory process
       admin_log:
         superspace:
           create: "%{user_name} created the %{resource_name} superspace"
