@@ -5,7 +5,7 @@ require "spec_helper"
 describe "User sees superspaces" do
   let!(:organization) { create(:organization) }
   let!(:user) { create(:user, :admin, :confirmed, organization:) }
-  let!(:superspaces) { create_list(:superspace, 10, organization:, show_statistics: true) }
+  let!(:superspaces) { create_list(:superspace, 10, organization:, show_statistics: true, participatory_spaces_order: ["assemblies", "participatory_processes", "conferences"]) }
   let!(:assemblies) { create_list(:assembly, 10, organization:) }
   let!(:conferences) { create_list(:conference, 10, organization:) }
   let!(:participatory_processes) { create_list(:participatory_process, 10, organization:) }
@@ -39,7 +39,7 @@ describe "User sees superspaces" do
     end
 
     it "renders the expected grid if the superspace has participatory spaces" do
-      within all("#processes-grid").last do
+      within all("#participatory_processes-grid").last do
         expect(page).to have_content("Participatory Processes")
       end
       within all("#assemblies-grid").last do
