@@ -5,7 +5,7 @@ require "spec_helper"
 describe "User sees superspaces" do
   let!(:organization) { create(:organization) }
   let!(:user) { create(:user, :admin, :confirmed, organization:) }
-  let!(:superspaces) { create_list(:superspace, 10, organization:, show_statistics: true, participatory_spaces_order: ["assemblies", "participatory_processes", "conferences"]) }
+  let!(:superspaces) { create_list(:superspace, 10, organization:, content_blocks_order: ["assemblies", "participatory_processes", "conferences", "statistics"]) }
   let!(:assemblies) { create_list(:assembly, 10, organization:) }
   let!(:conferences) { create_list(:conference, 10, organization:) }
   let!(:participatory_processes) { create_list(:participatory_process, 10, organization:) }
@@ -38,7 +38,7 @@ describe "User sees superspaces" do
       visit decidim_superspaces.superspace_path(superspaces.first)
     end
 
-    it "renders the expected grid if the superspace has participatory spaces" do
+    it "renders the expected grid if the superspace has content blocks" do
       within all("#participatory_processes-grid").last do
         expect(page).to have_content("Participatory Processes")
       end
@@ -52,7 +52,7 @@ describe "User sees superspaces" do
   end
 
   context "when visiting superspace with only active participatory space types" do
-    let!(:superspace_with_only_assemblies) { create(:superspace, organization:, show_statistics: true, participatory_spaces_order: ["assemblies"]) }
+    let!(:superspace_with_only_assemblies) { create(:superspace, organization:, content_blocks_order: ["assemblies"]) }
     let!(:assembly) { create(:assembly, organization:) }
     let!(:participatory_process) { create(:participatory_process, organization:) }
     let!(:conference) { create(:conference, organization:) }
@@ -72,12 +72,12 @@ describe "User sees superspaces" do
 
       expect(page).to have_no_selector("#participatory_processes-grid")
       expect(page).to have_no_selector("#conferences-grid")
-      expect(page).to have_selector("#statistics-grid")
+      expect(page).to have_no_selector("#statistics-grid")
     end
   end
 
   context "when visiting superspace with custom order of active types" do
-    let!(:superspace_custom_order) { create(:superspace, organization:, show_statistics: true, participatory_spaces_order: ["conferences", "assemblies"]) }
+    let!(:superspace_custom_order) { create(:superspace, organization:, content_blocks_order: ["conferences", "assemblies"]) }
     let!(:assembly) { create(:assembly, organization:) }
     let!(:participatory_process) { create(:participatory_process, organization:) }
     let!(:conference) { create(:conference, organization:) }
@@ -101,8 +101,8 @@ describe "User sees superspaces" do
     end
   end
 
-  context "when visiting superspace with no active participatory space types" do
-    let!(:superspace_no_active) { create(:superspace, organization:, show_statistics: true, participatory_spaces_order: []) }
+  context "when visiting superspace with no active content block types" do
+    let!(:superspace_no_active) { create(:superspace, organization:, content_blocks_order: []) }
     let!(:assembly) { create(:assembly, organization:) }
     let!(:participatory_process) { create(:participatory_process, organization:) }
     let!(:conference) { create(:conference, organization:) }
@@ -114,12 +114,12 @@ describe "User sees superspaces" do
       visit decidim_superspaces.superspace_path(superspace_no_active)
     end
 
-    it "shows no participatory space grids but shows empty message" do
+    it "shows no content block grids but shows empty message" do
       expect(page).to have_no_selector("#assemblies-grid")
       expect(page).to have_no_selector("#participatory_processes-grid")
       expect(page).to have_no_selector("#conferences-grid")
-      expect(page).to have_content("There are no active participatory spaces")
-      expect(page).to have_selector("#statistics-grid")
+      expect(page).to have_content("There are no active content blocks")
+      expect(page).to have_no_selector("#statistics-grid")
     end
   end
 
@@ -132,13 +132,6 @@ describe "User sees superspaces" do
       expect(page).to have_no_selector("#processes-grid")
       expect(page).to have_no_selector("#assemblies-grid")
       expect(page).to have_css("#statistics-grid")
-    end
-
-    it "doesn't render statistics if the superspace show statistics is false" do
-      superspaces.last.update!(show_statistics: false)
-      visit decidim_superspaces.superspace_path(superspaces.last)
-
-      expect(page).to have_no_selector("#statistics-grid")
     end
   end
 

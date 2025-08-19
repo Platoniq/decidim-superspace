@@ -15,35 +15,51 @@
 <% end %>
 
 <%= render layout: "layouts/decidim/shared/layout_two_col" do %>
-  <% active_types = superspace.participatory_spaces_order || [] %>
+  <% active_types = superspace.content_blocks_order || [] %>
   <% active_spaces = [] %>
   <% active_types.each do |type| %>
-    <% spaces = case type
-      when "assemblies" then superspace.assemblies
-      when "participatory_processes" then superspace.participatory_processes
-      when "conferences" then superspace.conferences
-      else []
-    end %>
-    <% active_spaces.concat(spaces) if spaces.any? %>
-    <% if spaces.any? %>
-      <section id="<%= type %>-grid" class="layout-main__section layout-main__heading">
-        <h2 class="title-decorator"><%= t(type, scope: "decidim.superspaces.superspaces.show") %></h2>
-        <% spaces.each do |space| %>
-          <%= card_for space, highlight: true, size: :g %>
+    <% case type
+      when "assemblies" %>
+        <% if superspace.assemblies.any? %>
+          <% active_spaces.concat(superspace.assemblies) %>
+          <section id="<%= type %>-grid" class="layout-main__section layout-main__heading">
+            <h2 class="title-decorator"><%= t(type, scope: "decidim.superspaces.superspaces.show") %></h2>
+            <% superspace.assemblies.each do |space| %>
+              <%= card_for space, highlight: true, size: :g %>
+            <% end %>
+          </section>
         <% end %>
-      </section>
+      <% when "participatory_processes" %>
+        <% if superspace.participatory_processes.any? %>
+          <% active_spaces.concat(superspace.participatory_processes) %>
+          <section id="<%= type %>-grid" class="layout-main__section layout-main__heading">
+            <h2 class="title-decorator"><%= t(type, scope: "decidim.superspaces.superspaces.show") %></h2>
+            <% superspace.participatory_processes.each do |space| %>
+              <%= card_for space, highlight: true, size: :g %>
+            <% end %>
+          </section>
+        <% end %>
+      <% when "conferences" %>
+        <% if superspace.conferences.any? %>
+          <% active_spaces.concat(superspace.conferences) %>
+          <section id="<%= type %>-grid" class="layout-main__section layout-main__heading">
+            <h2 class="title-decorator"><%= t(type, scope: "decidim.superspaces.superspaces.show") %></h2>
+            <% superspace.conferences.each do |space| %>
+              <%= card_for space, highlight: true, size: :g %>
+            <% end %>
+          </section>
+        <% end %>
+      <% when "statistics" %>
+        <section id="statistics-grid" class="layout-main__section layout-main__heading">
+          <h2 class="title-decorator"><%= t("statistics", scope: "decidim.superspaces.superspaces.show") %></h2>
+          <%= cell("decidim/statistics", superspace.statistics) %>
+        </section>
     <% end %>
   <% end %>
-  <% if active_spaces.empty? %>
+  <% if active_spaces.empty? && !superspace.show_statistics? %>
     <div class="text-muted text-center my-4">
-      <%= t("decidim.superspaces.superspaces.show.no_active_participatory_spaces") %>
+      <%= t("decidim.superspaces.superspaces.show.no_active_content_blocks") %>
     </div>
-  <% end %>
-  <% if superspace.show_statistics %>
-    <section id="statistics-grid" class="layout-main__section layout-main__heading">
-        <h2 class="title-decorator"><%= t("statistics", scope: "decidim.superspaces.superspaces.show") %></h2>
-          <%= cell("decidim/statistics",superspace.statistics) %>
-    </section>
   <% end %>
 <% end %>
 

@@ -182,14 +182,14 @@ describe "Admin manages superspaces" do
     end
   end
 
-  context "when configuring superspace participatory spaces order" do
+  context "when configuring superspace content block order" do
     let!(:superspace) { create(:superspace, organization:) }
     let!(:assemblies) { create_list(:assembly, 2, organization:) }
     let!(:participatory_processes) { create_list(:participatory_process, 2, organization:) }
     let!(:conferences) { create_list(:conference, 2, organization:) }
 
     before do
-      # Link participatory spaces to the superspace
+      # Link content blocks to the superspace
       assemblies.each { |assembly| create(:superspaces_participatory_space, superspace:, participatory_space: assembly) }
       participatory_processes.each { |process| create(:superspaces_participatory_space, superspace:, participatory_space: process) }
       conferences.each { |conference| create(:superspaces_participatory_space, superspace:, participatory_space: conference) }
@@ -204,28 +204,30 @@ describe "Admin manages superspaces" do
       end
 
       it "shows the configure page with drag and drop interface" do
-        expect(page).to have_content("Participatory Spaces Order")
-        expect(page).to have_content("Active Participatory Spaces")
-        expect(page).to have_content("Inactive Participatory Spaces")
+        expect(page).to have_content("Content Blocks Order")
+        expect(page).to have_content("Active Content Blocks")
+        expect(page).to have_content("Inactive Content Blocks")
         expect(page).to have_selector(".draggable-list.js-list-actives")
         expect(page).to have_selector(".draggable-list.js-list-available")
       end
 
-      it "shows all participatory space types in inactive list initially" do
+      it "shows all content block types in inactive list initially" do
         within ".js-list-available" do
           expect(page).to have_content("Assemblies")
           expect(page).to have_content("Participatory processes")
           expect(page).to have_content("Conferences")
+          expect(page).to have_content("Statistics")
         end
 
         within ".js-list-actives" do
           expect(page).to have_no_content("Assemblies")
           expect(page).to have_no_content("Participatory processes")
           expect(page).to have_no_content("Conferences")
+          expect(page).to have_no_content("Statistics")
         end
       end
 
-      it "shows correct counts for each participatory space type" do
+      it "shows correct counts for each content block type" do
         within ".js-list-available" do
           expect(page).to have_content("2 Assemblies")
           expect(page).to have_content("2 Participatory processes")
@@ -237,17 +239,18 @@ describe "Admin manages superspaces" do
         expect(page).to have_selector('li[draggable="true"][data-content-block-id="assemblies"]')
         expect(page).to have_selector('li[draggable="true"][data-content-block-id="participatory_processes"]')
         expect(page).to have_selector('li[draggable="true"][data-content-block-id="conferences"]')
+        expect(page).to have_selector('li[draggable="true"][data-content-block-id="statistics"]')
       end
 
       it "has the correct AJAX endpoint for updating order" do
         active_list = find(".js-list-actives")
-        expect(active_list["data-sort-url"]).to include("update_spaces_order")
+        expect(active_list["data-sort-url"]).to include("update_content_blocks_order")
       end
     end
 
-    context "when superspace has some active participatory space types" do
+    context "when superspace has some active content block types" do
       before do
-        superspace.update!(participatory_spaces_order: ["assemblies", "conferences"])
+        superspace.update!(content_blocks_order: ["assemblies", "conferences", "statistics"])
         visit_configure_superspace_path(superspace)
       end
 
@@ -255,6 +258,7 @@ describe "Admin manages superspaces" do
         within ".js-list-actives" do
           expect(page).to have_content("Assemblies")
           expect(page).to have_content("Conferences")
+          expect(page).to have_content("Statistics")
           expect(page).to have_no_content("Participatory processes")
         end
 
@@ -262,6 +266,7 @@ describe "Admin manages superspaces" do
           expect(page).to have_content("Participatory processes")
           expect(page).to have_no_content("Assemblies")
           expect(page).to have_no_content("Conferences")
+          expect(page).to have_no_content("Statistics")
         end
       end
 
@@ -269,12 +274,13 @@ describe "Admin manages superspaces" do
         active_items = all(".js-list-actives li")
         expect(active_items[0]).to have_content("Assemblies")
         expect(active_items[1]).to have_content("Conferences")
+        expect(active_items[2]).to have_content("Statistics")
       end
     end
 
-    context "when superspace has all participatory space types active" do
+    context "when superspace has all content block types active" do
       before do
-        superspace.update!(participatory_spaces_order: ["participatory_processes", "assemblies", "conferences"])
+        superspace.update!(content_blocks_order: ["participatory_processes", "assemblies", "conferences", "statistics"])
         visit_configure_superspace_path(superspace)
       end
 
@@ -283,12 +289,14 @@ describe "Admin manages superspaces" do
           expect(page).to have_content("Assemblies")
           expect(page).to have_content("Participatory processes")
           expect(page).to have_content("Conferences")
+          expect(page).to have_content("Statistics")
         end
 
         within ".js-list-available" do
           expect(page).to have_no_content("Assemblies")
           expect(page).to have_no_content("Participatory processes")
           expect(page).to have_no_content("Conferences")
+          expect(page).to have_no_content("Statistics")
         end
       end
 
@@ -299,33 +307,33 @@ describe "Admin manages superspaces" do
       end
     end
 
-    context "when superspace has no participatory spaces" do
+    context "when superspace has no content blocks" do
       let!(:empty_superspace) { create(:superspace, organization:) }
 
       before do
         visit_configure_superspace_path(empty_superspace)
       end
 
-      it "shows empty lists when superspace has no participatory spaces" do
+      it "shows empty lists when superspace has no content blocks" do
         within ".js-list-actives" do
           expect(page).to have_no_selector("li")
         end
 
         within ".js-list-available" do
-          expect(page).to have_no_selector("li")
+          expect(page).to have_content("Statistics")
         end
       end
     end
 
-    context "when updating participatory spaces order via drag and drop", js: true do
+    context "when updating content blocks order via drag and drop", js: true do
       before do
-        superspace.update!(participatory_spaces_order: ["assemblies"])
+        superspace.update!(content_blocks_order: ["assemblies"])
         visit_configure_superspace_path(superspace)
       end
 
       it "updates the order when elements are dragged and dropped" do
         # Check initial state
-        expect(superspace.participatory_spaces_order).to eq(["assemblies"])
+        expect(superspace.content_blocks_order).to eq(["assemblies"])
 
         # Simulate drag and drop by moving elements between lists
         page.execute_script(<<~JS)
@@ -345,13 +353,13 @@ describe "Admin manages superspaces" do
 
         # Check that the order was updated in the database
         superspace.reload
-        expect(superspace.participatory_spaces_order).to include("participatory_processes")
-        expect(superspace.participatory_spaces_order).to include("assemblies")
+        expect(superspace.content_blocks_order).to include("participatory_processes")
+        expect(superspace.content_blocks_order).to include("assemblies")
       end
 
       it "allows reordering active elements by dragging" do
         # Set up with multiple active elements
-        superspace.update!(participatory_spaces_order: ["assemblies", "conferences", "participatory_processes"])
+        superspace.update!(content_blocks_order: ["assemblies", "conferences", "participatory_processes", "statistics"])
         visit_configure_superspace_path(superspace)
 
         # Check initial order
@@ -359,6 +367,7 @@ describe "Admin manages superspaces" do
         expect(active_items[0]).to have_content("Assemblies")
         expect(active_items[1]).to have_content("Conferences")
         expect(active_items[2]).to have_content("Participatory processes")
+        expect(active_items[3]).to have_content("Statistics")
 
         # Simulate reordering: move "conferences" to the end
         page.execute_script(<<~JS)
@@ -381,13 +390,13 @@ describe "Admin manages superspaces" do
 
         # Verify the order was updated
         superspace.reload
-        expected_order = ["assemblies", "participatory_processes", "conferences"]
-        expect(superspace.participatory_spaces_order).to eq(expected_order)
+        expected_order = ["assemblies", "participatory_processes", "conferences", "statistics"]
+        expect(superspace.content_blocks_order).to eq(expected_order)
       end
 
       it "removes elements from active list when dragged to inactive" do
         # Configure the initial state with active elements
-        superspace.update!(participatory_spaces_order: ["assemblies", "conferences"])
+        superspace.update!(content_blocks_order: ["assemblies", "conferences"])
         visit_configure_superspace_path(superspace)
 
         # Simulate dragging "conferences" to the inactive list
@@ -410,13 +419,13 @@ describe "Admin manages superspaces" do
 
         # Verify that only "assemblies" remains active
         superspace.reload
-        expect(superspace.participatory_spaces_order).to eq(["assemblies"])
-        expect(superspace.participatory_spaces_order).not_to include("conferences")
+        expect(superspace.content_blocks_order).to eq(["assemblies"])
+        expect(superspace.content_blocks_order).not_to include("conferences")
       end
 
       it "handles empty active list correctly" do
         # Start with one active element
-        superspace.update!(participatory_spaces_order: ["assemblies"])
+        superspace.update!(content_blocks_order: ["assemblies"])
         visit_configure_superspace_path(superspace)
 
         # Move the only active element to inactive
@@ -437,7 +446,7 @@ describe "Admin manages superspaces" do
 
         # Verify that there are no active elements
         superspace.reload
-        expect(superspace.participatory_spaces_order).to eq([])
+        expect(superspace.content_blocks_order).to eq([])
       end
     end
   end

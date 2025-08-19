@@ -2,8 +2,10 @@
   <div class="draggable-content">
     <div class="flex items-center">
       <div>
-        <strong><%= t("decidim.superspaces.admin.superspaces.configure.#{type_name.singularize}").pluralize %></strong>
-        <small class="text-muted block"><%= type_description %></small>
+        <strong><%= type_title %></strong>
+        <% if show_description? %>
+          <small class="text-muted block"><%= type_description %></small>
+        <% end %>
       </div>
     </div>
     <div>

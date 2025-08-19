@@ -18,14 +18,15 @@ es:
             new: Nuevo superespacio
             title: Acciones
           configure:
-            active_participatory_spaces: Espacios Participativos Activos
+            active_content_blocks: Bloques de Contenido Activos
             assembly: Asamblea
             conference: Conferencia
-            inactive_participatory_spaces: Espacios Participativos Inactivos
-            no_active_spaces: No hay espacios participativos activos
-            no_inactive_spaces: Todos los espacios participativos están activos
+            content_blocks_title: Orden de bloques de contenido
+            inactive_content_blocks: Bloques de Contenido Inactivos
+            no_active_content_blocks: No hay bloques de contenido activos
+            no_inactive_content_blocks: Todos los bloques de contenido están activos
             participatory_process: Proceso participativo
-            participatory_spaces_title: Orden de Tipos de Espacios Participativos
+            statistics: Estadísticas
             title: Configurar espacios participativos
           create:
             invalid: Ha habido un problema al crear este superespacio
@@ -69,6 +70,6 @@ es:
         show:
           assemblies: Asambleas
           conferences: Conferences
-          no_active_participatory_spaces: No hay espacios participativos activos
+          no_active_content_blocks: No hay espacios participativos activos
           participatory_processes: Procesos participativos
           statistics: Estadísticas

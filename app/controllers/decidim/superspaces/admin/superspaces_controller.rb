@@ -71,16 +71,16 @@ module Decidim
         def configure
           enforce_permission_to :update, :superspace
           @superspace = Superspace.find(params[:id])
-          @active_space_types, @inactive_space_types = build_participatory_space_types
+          @active_block_types, @inactive_block_types = build_content_block_types
         end
 
-        def update_spaces_order
+        def update_content_blocks_order
           enforce_permission_to :update, :superspace
 
           @superspace = Superspace.find(params[:id])
           order_types = params[:ids_order]
 
-          if @superspace.update(participatory_spaces_order: order_types)
+          if @superspace.update(content_blocks_order: order_types)
             head :ok
           else
             head :unprocessable_entity
@@ -89,7 +89,7 @@ module Decidim
 
         private
 
-        def build_participatory_space_types
+        def build_content_block_types
           all_types = []
 
           if @superspace.assemblies.any?
@@ -113,7 +113,12 @@ module Decidim
             }
           end
 
-          active_order = @superspace.participatory_spaces_order || []
+          all_types << {
+            type: 'statistics',
+            count: 1
+          }
+
+          active_order = @superspace.content_blocks_order || []
 
           # Active types in the specified order
           active_types = []

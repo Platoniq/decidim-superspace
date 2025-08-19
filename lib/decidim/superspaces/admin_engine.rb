@@ -13,7 +13,7 @@ module Decidim
         resources :superspaces do
           member do
             get :configure
-            put :update_spaces_order
+            put :update_content_blocks_order
           end
         end
         root to: "superspaces#index"

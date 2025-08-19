@@ -21,14 +21,15 @@ en:
             new: New superspace
             title: Actions
           configure:
-            active_participatory_spaces: Active Participatory Spaces
+            active_content_blocks: Active Content Blocks
             assembly: Assembly
             conference: Conference
-            inactive_participatory_spaces: Inactive Participatory Spaces
-            no_active_spaces: No active participatory spaces
-            no_inactive_spaces: All participatory spaces are active
+            content_blocks_title: Content Blocks Order
+            inactive_content_blocks: Inactive Content Blocks
+            no_active_content_blocks: No active content blocks
+            no_inactive_content_blocks: All content blocks are active
             participatory_process: Participatory process
-            participatory_spaces_title: Participatory Spaces Order
+            statistics: Statistics
             title: Configure superspace
           create:
             invalid: There was a problem creating this superspace
@@ -83,6 +84,6 @@ en:
         show:
           assemblies: Assemblies
           conferences: Conferences
-          no_active_participatory_spaces: There are no active participatory spaces
+          no_active_content_blocks: There are no active content blocks
           participatory_processes: Participatory Processes
           statistics: Statistics
