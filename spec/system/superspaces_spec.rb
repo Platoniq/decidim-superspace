@@ -51,6 +51,78 @@ describe "User sees superspaces" do
     end
   end
 
+  context "when visiting superspace with only active participatory space types" do
+    let!(:superspace_with_only_assemblies) { create(:superspace, organization:, show_statistics: true, participatory_spaces_order: ["assemblies"]) }
+    let!(:assembly) { create(:assembly, organization:) }
+    let!(:participatory_process) { create(:participatory_process, organization:) }
+    let!(:conference) { create(:conference, organization:) }
+    let!(:assembly_superspace) { create(:superspaces_participatory_space, superspace: superspace_with_only_assemblies, participatory_space: assembly) }
+    let!(:participatory_process_superspace) { create(:superspaces_participatory_space, superspace: superspace_with_only_assemblies, participatory_space: participatory_process) }
+    let!(:conference_superspace) { create(:superspaces_participatory_space, superspace: superspace_with_only_assemblies, participatory_space: conference) }
+
+    before do
+      visit decidim_superspaces.superspace_path(superspace_with_only_assemblies)
+    end
+
+    it "only renders active participatory space types" do
+      expect(page).to have_selector("#assemblies-grid")
+      within "#assemblies-grid" do
+        expect(page).to have_content("Assemblies")
+      end
+
+      expect(page).to have_no_selector("#participatory_processes-grid")
+      expect(page).to have_no_selector("#conferences-grid")
+      expect(page).to have_selector("#statistics-grid")
+    end
+  end
+
+  context "when visiting superspace with custom order of active types" do
+    let!(:superspace_custom_order) { create(:superspace, organization:, show_statistics: true, participatory_spaces_order: ["conferences", "assemblies"]) }
+    let!(:assembly) { create(:assembly, organization:) }
+    let!(:participatory_process) { create(:participatory_process, organization:) }
+    let!(:conference) { create(:conference, organization:) }
+    let!(:assembly_superspace) { create(:superspaces_participatory_space, superspace: superspace_custom_order, participatory_space: assembly) }
+    let!(:participatory_process_superspace) { create(:superspaces_participatory_space, superspace: superspace_custom_order, participatory_space: participatory_process) }
+    let!(:conference_superspace) { create(:superspaces_participatory_space, superspace: superspace_custom_order, participatory_space: conference) }
+
+    before do
+      visit decidim_superspaces.superspace_path(superspace_custom_order)
+    end
+
+    it "renders active participatory space types in the specified order" do
+      expect(page).to have_selector("#conferences-grid")
+      expect(page).to have_selector("#assemblies-grid")
+      expect(page).to have_no_selector("#participatory_processes-grid")
+
+      conferences_position = page.body.index('id="conferences-grid"')
+      assemblies_position = page.body.index('id="assemblies-grid"')
+
+      expect(conferences_position).to be < assemblies_position
+    end
+  end
+
+  context "when visiting superspace with no active participatory space types" do
+    let!(:superspace_no_active) { create(:superspace, organization:, show_statistics: true, participatory_spaces_order: []) }
+    let!(:assembly) { create(:assembly, organization:) }
+    let!(:participatory_process) { create(:participatory_process, organization:) }
+    let!(:conference) { create(:conference, organization:) }
+    let!(:assembly_superspace) { create(:superspaces_participatory_space, superspace: superspace_no_active, participatory_space: assembly) }
+    let!(:participatory_process_superspace) { create(:superspaces_participatory_space, superspace: superspace_no_active, participatory_space: participatory_process) }
+    let!(:conference_superspace) { create(:superspaces_participatory_space, superspace: superspace_no_active, participatory_space: conference) }
+
+    before do
+      visit decidim_superspaces.superspace_path(superspace_no_active)
+    end
+
+    it "shows no participatory space grids but shows empty message" do
+      expect(page).to have_no_selector("#assemblies-grid")
+      expect(page).to have_no_selector("#participatory_processes-grid")
+      expect(page).to have_no_selector("#conferences-grid")
+      expect(page).to have_content("There are no active participatory spaces")
+      expect(page).to have_selector("#statistics-grid")
+    end
+  end
+
   context "when visiting empty superspace path" do
     before do
       visit decidim_superspaces.superspace_path(superspaces.last)
