@@ -6,6 +6,9 @@ el:
         superspaces: Superspaces
     superspaces:
       admin:
+        content_blocks:
+          highlighted_superspaces:
+            max_results: Maximum amount of elements to show
         models:
           superspace:
             name: Superspace
@@ -37,6 +40,9 @@ el:
           create: "%{user_name} created the %{resource_name} superspace"
           delete: "%{user_name} deleted the %{resource_name} superspace"
           update: "%{user_name} updated the %{resource_name} superspace"
+      content_blocks:
+        highlighted_superspaces:
+          name: Highlighted superspaces
       models:
         superspace:
           fields:
@@ -46,6 +52,14 @@ el:
             locale: Language
             participatory_processes: Participatory Processes
             title: Title
+      pages:
+        home:
+          highlighted_superspaces:
+            active_spaces: Active superspaces
+            see_all_spaces: See all superspaces
+      participatory_spaces:
+        show:
+          part_of: This space is part of the %{superspace} superspace.
       superspaces:
         index:
           title: Superspaces
@@ -58,3 +72,4 @@ el:
           assemblies: Assemblies
           conferences: Conferences
           participatory_processes: Participatory Processes
+          statistics: Statistics
