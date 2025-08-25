@@ -8,29 +8,29 @@ es:
       admin:
         content_blocks:
           highlighted_superspaces:
-            max_results: Maximum amount of elements to show
+            max_results: Número máximo de elementos a mostrar
         models:
           superspace:
             name: Superespacio
         superspaces:
           actions:
-            configure: Configurar
-            confirm_destroy: "¿Estás seguro de que deseas eliminar este superespacio?"
+            configure: Configure
+            confirm_destroy: '¿Estás seguro de que deseas eliminar este superespacio?'
             destroy: Eliminar
             edit: Editar
             new: Nuevo superespacio
             title: Acciones
           configure:
-            active_content_blocks: Bloques de Contenido Activos
-            assembly: Asamblea
-            conference: Conferencia
-            content_blocks_title: Orden de bloques de contenido
-            inactive_content_blocks: Bloques de Contenido Inactivos
-            no_active_content_blocks: No hay bloques de contenido activos
-            no_inactive_content_blocks: Todos los bloques de contenido están activos
-            participatory_process: Proceso participativo
-            statistics: Estadísticas
-            title: Configurar espacios participativos
+            active_content_blocks: Active Content Blocks
+            assembly: Assembly
+            conference: Conference
+            content_blocks_title: Content Blocks Order
+            inactive_content_blocks: Inactive Content Blocks
+            no_active_content_blocks: No active content blocks
+            no_inactive_content_blocks: All content blocks are active
+            participatory_process: Participatory process
+            statistics: Statistics
+            title: Configure superspace
           create:
             invalid: Ha habido un problema al crear este superespacio
             success: Superespacio creado correctamente
@@ -54,7 +54,7 @@ es:
           update: "%{user_name} actualizó el superespacio %{resource_name}"
       content_blocks:
         highlighted_superspaces:
-          name: Highlighted superspaces
+          name: Superespacios destacados
       models:
         superspace:
           fields:
@@ -67,23 +67,22 @@ es:
       pages:
         home:
           highlighted_superspaces:
-            active_spaces: Active superspaces
-            see_all_spaces: See all superspaces
+            active_spaces: Superespacios activos
+            see_all_spaces: Ver todos los superespacios
       participatory_spaces:
         show:
-          part_of: This space is part of the %{superspace} superspace.
+          part_of: Este espacio forma parte del superespacio %{superspace}
       superspaces:
         index:
           title: Superespacios
         language_selector:
           change: Sí, cámbialo
-          cookie_question: Hemos detectado que estás utilizando un idioma diferente
-            al asignado al superespacio. ¿Desea cambiarlo?
+          cookie_question: Hemos detectado que estás utilizando un idioma diferente al asignado al superespacio. ¿Desea cambiarlo?
           cookie_subtitle: Su preferencia se guardará durante 30 días en una cookie
           keep: No, quiero mantener mi idioma
         show:
           assemblies: Asambleas
-          conferences: Conferences
-          no_active_content_blocks: No hay espacios participativos activos
+          conferences: Jornadas
+          no_active_content_blocks: There are no active content blocks
           participatory_processes: Procesos participativos
           statistics: Estadísticas
