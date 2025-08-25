@@ -19,6 +19,8 @@ module Decidim
                  foreign_key: "decidim_organization_id",
                  class_name: "Decidim::Organization"
 
+      serialize :content_blocks_order, JSON
+
       def participatory_spaces
         superspaces_participatory_spaces.map(&:participatory_space)
       end
@@ -33,6 +35,14 @@ module Decidim
 
       def conferences
         find_spaces_by_type("Decidim::Conference")
+      end
+
+      def statistics
+        Decidim::Superspaces::SuperspaceStatsPresenter.new(self).collection
+      end
+
+      def show_statistics?
+        content_blocks_order&.include?("statistics")
       end
 
       def self.log_presenter_class_for(_log) = Decidim::Superspaces::AdminLog::SuperspacePresenter

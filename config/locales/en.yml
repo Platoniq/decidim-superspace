@@ -6,16 +6,31 @@ en:
         superspaces: Superspaces
     superspaces:
       admin:
+        content_blocks:
+          highlighted_superspaces:
+            max_results: Maximum amount of elements to show
         models:
           superspace:
             name: Superspace
         superspaces:
           actions:
+            configure: Configure
             confirm_destroy: Are you sure you want to delete this superspace?
             destroy: Delete
             edit: Edit
             new: New superspace
             title: Actions
+          configure:
+            active_content_blocks: Active Content Blocks
+            assembly: Assembly
+            conference: Conference
+            content_blocks_title: Content Blocks Order
+            inactive_content_blocks: Inactive Content Blocks
+            no_active_content_blocks: No active content blocks
+            no_inactive_content_blocks: All content blocks are active
+            participatory_process: Participatory process
+            statistics: Statistics
+            title: Configure superspace
           create:
             invalid: There was a problem creating this superspace
             success: Superspace successfully created
@@ -37,6 +52,9 @@ en:
           create: "%{user_name} created the %{resource_name} superspace"
           delete: "%{user_name} deleted the %{resource_name} superspace"
           update: "%{user_name} updated the %{resource_name} superspace"
+      content_blocks:
+        highlighted_superspaces:
+          name: Highlighted superspaces
       models:
         superspace:
           fields:
@@ -46,6 +64,11 @@ en:
             locale: Language
             participatory_processes: Participatory Processes
             title: Title
+      pages:
+        home:
+          highlighted_superspaces:
+            active_spaces: Active superspaces
+            see_all_spaces: See all superspaces
       participatory_spaces:
         show:
           part_of: This space is part of the %{superspace} superspace.
@@ -61,4 +84,6 @@ en:
         show:
           assemblies: Assemblies
           conferences: Conferences
+          no_active_content_blocks: There are no active content blocks
           participatory_processes: Participatory Processes
+          statistics: Statistics

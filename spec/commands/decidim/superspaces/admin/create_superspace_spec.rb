@@ -18,6 +18,7 @@ module Decidim
         let(:participatory_process_ids) { nil }
         let(:conference_ids) { nil }
         let(:invalid) { false }
+        let(:show_statistics) { false }
         let(:form) do
           double(
             invalid?: invalid,
@@ -28,7 +29,8 @@ module Decidim
             locale:,
             assembly_ids:,
             participatory_process_ids:,
-            conference_ids:
+            conference_ids:,
+            show_statistics:
           )
         end
 
