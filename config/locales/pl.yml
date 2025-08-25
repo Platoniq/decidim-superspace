@@ -14,11 +14,23 @@ pl:
             name: Superspace
         superspaces:
           actions:
+            configure: Configure
             confirm_destroy: Are you sure you want to delete this superspace?
             destroy: Delete
             edit: Edit
             new: New superspace
             title: Actions
+          configure:
+            active_content_blocks: Active Content Blocks
+            assembly: Assembly
+            conference: Conference
+            content_blocks_title: Content Blocks Order
+            inactive_content_blocks: Inactive Content Blocks
+            no_active_content_blocks: No active content blocks
+            no_inactive_content_blocks: All content blocks are active
+            participatory_process: Participatory process
+            statistics: Statistics
+            title: Configure superspace
           create:
             invalid: There was a problem creating this superspace
             success: Superspace successfully created
@@ -71,5 +83,6 @@ pl:
         show:
           assemblies: Assemblies
           conferences: Conferences
+          no_active_content_blocks: There are no active content blocks
           participatory_processes: Participatory Processes
           statistics: Statistics
