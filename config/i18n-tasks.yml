@@ -9,6 +9,9 @@ ignore_unused:
   - decidim.superspaces.participatory_spaces.show.part_of
   - decidim.superspaces.content_blocks.*
   - decidim.superspaces.pages.home.highlighted_superspaces*
+  - decidim.superspaces.superspaces.show.assemblies
+  - decidim.superspaces.superspaces.show.conferences
+  - decidim.superspaces.superspaces.show.participatory_processes
 
 ignore_missing:
   - decidim.participatory_processes.scopes.global
