@@ -94,27 +94,27 @@ module Decidim
 
           if @superspace.assemblies.any?
             all_types << {
-              type: 'assemblies',
+              type: "assemblies",
               count: @superspace.assemblies.count
             }
           end
 
           if @superspace.participatory_processes.any?
             all_types << {
-              type: 'participatory_processes',
+              type: "participatory_processes",
               count: @superspace.participatory_processes.count
             }
           end
 
           if @superspace.conferences.any?
             all_types << {
-              type: 'conferences',
+              type: "conferences",
               count: @superspace.conferences.count
             }
           end
 
           all_types << {
-            type: 'statistics',
+            type: "statistics",
             count: 1
           }
 

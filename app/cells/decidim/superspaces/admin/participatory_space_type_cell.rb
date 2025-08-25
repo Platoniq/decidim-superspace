@@ -5,7 +5,6 @@ module Decidim
     module Admin
       # This cell renders a participatory space type block for the superspace configuration
       class ParticipatorySpaceTypeCell < Decidim::ViewModel
-
         def show
           render
         end
@@ -39,7 +38,7 @@ module Decidim
         end
 
         def statistics?
-          type_name == 'statistics'
+          type_name == "statistics"
         end
       end
     end

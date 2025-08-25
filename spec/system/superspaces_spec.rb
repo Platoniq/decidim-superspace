@@ -5,7 +5,7 @@ require "spec_helper"
 describe "User sees superspaces" do
   let!(:organization) { create(:organization) }
   let!(:user) { create(:user, :admin, :confirmed, organization:) }
-  let!(:superspaces) { create_list(:superspace, 10, organization:, content_blocks_order: ["assemblies", "participatory_processes", "conferences", "statistics"]) }
+  let!(:superspaces) { create_list(:superspace, 10, organization:, content_blocks_order: %w(assemblies participatory_processes conferences statistics)) }
   let!(:assemblies) { create_list(:assembly, 10, organization:) }
   let!(:conferences) { create_list(:conference, 10, organization:) }
   let!(:participatory_processes) { create_list(:participatory_process, 10, organization:) }
@@ -65,7 +65,7 @@ describe "User sees superspaces" do
     end
 
     it "only renders active participatory space types" do
-      expect(page).to have_selector("#assemblies-grid")
+      expect(page).to have_css("#assemblies-grid")
       within "#assemblies-grid" do
         expect(page).to have_content("Assemblies")
       end
@@ -77,7 +77,7 @@ describe "User sees superspaces" do
   end
 
   context "when visiting superspace with custom order of active types" do
-    let!(:superspace_custom_order) { create(:superspace, organization:, content_blocks_order: ["conferences", "assemblies"]) }
+    let!(:superspace_custom_order) { create(:superspace, organization:, content_blocks_order: %w(conferences assemblies)) }
     let!(:assembly) { create(:assembly, organization:) }
     let!(:participatory_process) { create(:participatory_process, organization:) }
     let!(:conference) { create(:conference, organization:) }
@@ -90,8 +90,8 @@ describe "User sees superspaces" do
     end
 
     it "renders active participatory space types in the specified order" do
-      expect(page).to have_selector("#conferences-grid")
-      expect(page).to have_selector("#assemblies-grid")
+      expect(page).to have_css("#conferences-grid")
+      expect(page).to have_css("#assemblies-grid")
       expect(page).to have_no_selector("#participatory_processes-grid")
 
       conferences_position = page.body.index('id="conferences-grid"')

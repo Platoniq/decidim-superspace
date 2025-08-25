@@ -42,7 +42,7 @@ module Decidim
       end
 
       def show_statistics?
-        content_blocks_order&.include?('statistics')
+        content_blocks_order&.include?("statistics")
       end
 
       def self.log_presenter_class_for(_log) = Decidim::Superspaces::AdminLog::SuperspacePresenter

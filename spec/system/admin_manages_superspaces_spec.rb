@@ -207,8 +207,8 @@ describe "Admin manages superspaces" do
         expect(page).to have_content("Content Blocks Order")
         expect(page).to have_content("Active Content Blocks")
         expect(page).to have_content("Inactive Content Blocks")
-        expect(page).to have_selector(".draggable-list.js-list-actives")
-        expect(page).to have_selector(".draggable-list.js-list-available")
+        expect(page).to have_css(".draggable-list.js-list-actives")
+        expect(page).to have_css(".draggable-list.js-list-available")
       end
 
       it "shows all content block types in inactive list initially" do
@@ -236,10 +236,10 @@ describe "Admin manages superspaces" do
       end
 
       it "shows draggable elements with correct attributes" do
-        expect(page).to have_selector('li[draggable="true"][data-content-block-id="assemblies"]')
-        expect(page).to have_selector('li[draggable="true"][data-content-block-id="participatory_processes"]')
-        expect(page).to have_selector('li[draggable="true"][data-content-block-id="conferences"]')
-        expect(page).to have_selector('li[draggable="true"][data-content-block-id="statistics"]')
+        expect(page).to have_css('li[draggable="true"][data-content-block-id="assemblies"]')
+        expect(page).to have_css('li[draggable="true"][data-content-block-id="participatory_processes"]')
+        expect(page).to have_css('li[draggable="true"][data-content-block-id="conferences"]')
+        expect(page).to have_css('li[draggable="true"][data-content-block-id="statistics"]')
       end
 
       it "has the correct AJAX endpoint for updating order" do
@@ -250,7 +250,7 @@ describe "Admin manages superspaces" do
 
     context "when superspace has some active content block types" do
       before do
-        superspace.update!(content_blocks_order: ["assemblies", "conferences", "statistics"])
+        superspace.update!(content_blocks_order: %w(assemblies conferences statistics))
         visit_configure_superspace_path(superspace)
       end
 
@@ -280,7 +280,7 @@ describe "Admin manages superspaces" do
 
     context "when superspace has all content block types active" do
       before do
-        superspace.update!(content_blocks_order: ["participatory_processes", "assemblies", "conferences", "statistics"])
+        superspace.update!(content_blocks_order: %w(participatory_processes assemblies conferences statistics))
         visit_configure_superspace_path(superspace)
       end
 
@@ -359,7 +359,7 @@ describe "Admin manages superspaces" do
 
       it "allows reordering active elements by dragging" do
         # Set up with multiple active elements
-        superspace.update!(content_blocks_order: ["assemblies", "conferences", "participatory_processes", "statistics"])
+        superspace.update!(content_blocks_order: %w(assemblies conferences participatory_processes statistics))
         visit_configure_superspace_path(superspace)
 
         # Check initial order
@@ -390,13 +390,13 @@ describe "Admin manages superspaces" do
 
         # Verify the order was updated
         superspace.reload
-        expected_order = ["assemblies", "participatory_processes", "conferences", "statistics"]
+        expected_order = %w(assemblies participatory_processes conferences statistics)
         expect(superspace.content_blocks_order).to eq(expected_order)
       end
 
       it "removes elements from active list when dragged to inactive" do
         # Configure the initial state with active elements
-        superspace.update!(content_blocks_order: ["assemblies", "conferences"])
+        superspace.update!(content_blocks_order: %w(assemblies conferences))
         visit_configure_superspace_path(superspace)
 
         # Simulate dragging "conferences" to the inactive list
