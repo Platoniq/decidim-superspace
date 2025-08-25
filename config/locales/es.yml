@@ -14,23 +14,23 @@ es:
             name: Superespacio
         superspaces:
           actions:
-            configure: Configure
+            configure: Configurar
             confirm_destroy: '¿Estás seguro de que deseas eliminar este superespacio?'
             destroy: Eliminar
             edit: Editar
             new: Nuevo superespacio
             title: Acciones
           configure:
-            active_content_blocks: Active Content Blocks
-            assembly: Assembly
-            conference: Conference
-            content_blocks_title: Content Blocks Order
-            inactive_content_blocks: Inactive Content Blocks
-            no_active_content_blocks: No active content blocks
-            no_inactive_content_blocks: All content blocks are active
-            participatory_process: Participatory process
-            statistics: Statistics
-            title: Configure superspace
+            active_content_blocks: Bloques de contenido activos
+            assembly: Asamblea
+            conference: Jornada
+            content_blocks_title: Orden de bloques de contenido
+            inactive_content_blocks: Bloques de contenido inactivos
+            no_active_content_blocks: No hay bloques de contenido activados
+            no_inactive_content_blocks: Todos los bloques de contenido están activados
+            participatory_process: Proceso participativo
+            statistics: Estadísticas
+            title: Configurar superespacio
           create:
             invalid: Ha habido un problema al crear este superespacio
             success: Superespacio creado correctamente
@@ -83,6 +83,6 @@ es:
         show:
           assemblies: Asambleas
           conferences: Jornadas
-          no_active_content_blocks: There are no active content blocks
+          no_active_content_blocks: No hay bloques de contenido activados
           participatory_processes: Procesos participativos
           statistics: Estadísticas
