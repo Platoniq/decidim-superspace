@@ -1,0 +1,53 @@
+<% add_decidim_page_title(t(".title")) %>
+<div class="card edit_content_blocks">
+  <div class="item_show__header">
+    <h1 class="item_show__header-title">
+      <%= t(".content_blocks_title") %>
+    </h1>
+  </div>
+
+  <div class="card-section-draggable-list">
+    <div class="full">
+      <div class="grid-x grid-margin-x card-grid">
+        <div class="cell">
+          <div class="card">
+            <div class="card-section">
+              <h5 class="draggable-list-title"><%= t(".active_content_blocks") %></h5>
+              <ul class="draggable-list js-connect js-list-actives" data-sort-url="<%= update_content_blocks_order_superspace_path(@superspace) %>">
+                <% @active_block_types.each do |block_type| %>
+                  <%= cell "decidim/superspaces/admin/participatory_space_type", block_type %>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="cell">
+          <div class="card">
+            <div class="card-section">
+              <h5 class="draggable-list-title"><%= t(".inactive_content_blocks") %></h5>
+              <ul class="draggable-list js-connect js-list-available">
+                <% @inactive_block_types.each do |block_type| %>
+                  <%= cell "decidim/superspaces/admin/participatory_space_type", block_type %>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("dragend", function (event) {
+    const activeBlocks = Array.prototype.slice.call(document.querySelectorAll(".js-list-actives li"));
+    const activeBlocksId = activeBlocks.map(block => block.dataset.contentBlockId);
+
+    $.ajax({
+      method: "PUT",
+      url: document.querySelector(".js-list-actives").dataset.sortUrl,
+      contentType: "application/json",
+      data: JSON.stringify({ ids_order: activeBlocksId })
+    });
+  })
+</script>

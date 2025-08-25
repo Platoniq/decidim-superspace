@@ -7,7 +7,7 @@ module Decidim
       class SuperspacesController < ApplicationController
         include TranslatableAttributes
 
-        helper_method :superspaces, :superspace
+        helper_method :superspaces, :superspace, :participatory_spaces_sort_url
 
         def index
           enforce_permission_to :index, :superspace
@@ -68,7 +68,70 @@ module Decidim
           end
         end
 
+        def configure
+          enforce_permission_to :update, :superspace
+          @superspace = Superspace.find(params[:id])
+          @active_block_types, @inactive_block_types = build_content_block_types
+        end
+
+        def update_content_blocks_order
+          enforce_permission_to :update, :superspace
+
+          @superspace = Superspace.find(params[:id])
+          order_types = params[:ids_order]
+
+          if @superspace.update(content_blocks_order: order_types)
+            head :ok
+          else
+            head :unprocessable_entity
+          end
+        end
+
         private
+
+        def build_content_block_types
+          all_types = []
+
+          if @superspace.assemblies.any?
+            all_types << {
+              type: "assemblies",
+              count: @superspace.assemblies.count
+            }
+          end
+
+          if @superspace.participatory_processes.any?
+            all_types << {
+              type: "participatory_processes",
+              count: @superspace.participatory_processes.count
+            }
+          end
+
+          if @superspace.conferences.any?
+            all_types << {
+              type: "conferences",
+              count: @superspace.conferences.count
+            }
+          end
+
+          all_types << {
+            type: "statistics",
+            count: 1
+          }
+
+          active_order = @superspace.content_blocks_order || []
+
+          # Active types in the specified order
+          active_types = []
+          active_order.each do |type|
+            type_obj = all_types.find { |t| t[:type] == type }
+            active_types << type_obj if type_obj
+          end
+
+          # Inactive types (not in the active order)
+          inactive_types = all_types.reject { |t| active_order.include?(t[:type]) }
+
+          [active_types, inactive_types]
+        end
 
         def superspace
           @superspace ||= filtered_superspaces.find(params[:id])
