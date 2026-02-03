@@ -104,7 +104,7 @@ module Decidim
       end
 
       def endorsements_query(components)
-        Decidim::Endorsement
+        Decidim::Like
           .where(resource: components)
           .pluck(:decidim_author_id)
           .uniq
@@ -146,7 +146,7 @@ module Decidim
       end
 
       def survey_answer_query(components)
-        Decidim::Forms::Answer.newsletter_participant_ids(components)
+        Decidim::Forms::Response.newsletter_participant_ids(components)
       end
 
       def space_components

@@ -19,7 +19,7 @@ module Decidim
                  foreign_key: "decidim_organization_id",
                  class_name: "Decidim::Organization"
 
-      serialize :content_blocks_order, JSON
+      serialize :content_blocks_order, coder: JSON
 
       def participatory_spaces
         superspaces_participatory_spaces.map(&:participatory_space)
