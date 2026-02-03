@@ -19,7 +19,7 @@ module Decidim
         highlighted_stats.concat(component_stats(priority: StatsRegistry::HIGH_PRIORITY))
         highlighted_stats.concat(component_stats(priority: StatsRegistry::MEDIUM_PRIORITY))
 
-        highlighted_stats = highlighted_stats.reject(&:blank?)
+        highlighted_stats = highlighted_stats.compact_blank
 
         highlighted_stats = highlighted_stats.reject do |stat|
           value = if stat.is_a?(Hash)
@@ -36,7 +36,7 @@ module Decidim
 
         stats(grouped_highlighted_stats)
       end
-      
+
       def stats(grouped_stats)
         grouped_stats.map do |name, stats_list|
           total_value = stats_list.sum do |stat|
