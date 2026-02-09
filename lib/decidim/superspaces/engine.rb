@@ -2,7 +2,7 @@
 
 require "rails"
 require "decidim/core"
-require "decidim/initiatives/engine"
+# require "decidim/initiatives/engine"
 
 require_relative "content_blocks/content_blocks_homepage"
 
@@ -11,9 +11,9 @@ module Decidim
     class Engine < ::Rails::Engine
       isolate_namespace Decidim::Superspaces
 
-      initializer "decidim_superspaces.load_initiatives" do
-        require "decidim/initiatives/engine" if defined?(Decidim::Initiatives)
-      end
+      # initializer "decidim_superspaces.load_initiatives" do
+      #   require "decidim/initiatives/engine" if defined?(Decidim::Initiatives)
+      # end
 
       routes do
         resources :superspaces

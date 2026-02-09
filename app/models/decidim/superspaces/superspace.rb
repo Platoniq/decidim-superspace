@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "decidim/initiatives"
+# require "decidim/initiatives"
 
 module Decidim
   module Superspaces
@@ -41,9 +41,9 @@ module Decidim
         find_spaces_by_type("Decidim::Conference")
       end
 
-      def initiatives
-        find_spaces_by_type("Decidim::Initiative")
-      end
+      # def initiatives
+      #   find_spaces_by_type("Decidim::Initiative")
+      # end
 
       def statistics(stats = nil)
         return Decidim::Superspaces::SuperspaceStatsPresenter.new(self).collection if stats.nil?

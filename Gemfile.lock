@@ -931,6 +931,7 @@ DEPENDENCIES
   decidim (= 0.31.0)
   decidim-conferences (>= 0.31.0, < 0.32)
   decidim-dev (= 0.31.0)
+  decidim-initiatives (>= 0.31.0, < 0.32)
   decidim-superspaces!
   deface
   faker (~> 3.2)
