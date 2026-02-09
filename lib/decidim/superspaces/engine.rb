@@ -23,10 +23,8 @@ module Decidim
         Decidim::Assembly.include(Decidim::Superspaces::HasSuperspace)
         Decidim::ParticipatoryProcess.include(Decidim::Superspaces::HasSuperspace)
         Decidim::Conference.include(Decidim::Superspaces::HasSuperspace)
-        
-        if defined?(Decidim::Initiative)
-          Decidim::Initiative.include(Decidim::Superspaces::HasSuperspace)
-        end
+
+        Decidim::Initiative.include(Decidim::Superspaces::HasSuperspace) if defined?(Decidim::Initiative)
       end
 
       initializer "decidim_superspaces.register_resources" do
