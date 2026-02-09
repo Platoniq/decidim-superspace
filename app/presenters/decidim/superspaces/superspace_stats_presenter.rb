@@ -5,7 +5,6 @@ module Decidim
     # This class holds the logic to present superspace stats.
     # It inherits from `Decidim::StatsPresenter` and overrides the methods
     # needed to adapt the stats to the superspace context.
-
     class SuperspaceStatsPresenter < Decidim::StatsPresenter
       include Decidim::IconHelper
 
@@ -14,9 +13,12 @@ module Decidim
         highlighted_stats.concat(participatory_space_followers_stats)
         highlighted_stats.concat(component_stats(priority: StatsRegistry::HIGH_PRIORITY))
         highlighted_stats.concat(component_stats(priority: StatsRegistry::MEDIUM_PRIORITY))
-        highlighted_stats.concat(comments_stats(participatory_space_sym))
+        highlighted_stats.concat(comments_stats)
+        
         highlighted_stats = highlighted_stats.reject(&:empty?)
-        highlighted_stats = highlighted_stats.reject { |_stat_manifest, _stat_title, stat_number| stat_number.zero? }
+        highlighted_stats = highlighted_stats.reject do |_stat_manifest, _stat_title, stat_number| 
+          stat_number.to_i.zero? 
+        end
         grouped_highlighted_stats = highlighted_stats.group_by(&:first)
 
         statistics(grouped_highlighted_stats)
@@ -27,7 +29,9 @@ module Decidim
       def participatory_space = __getobj__
 
       def participatory_processes
-        @participatory_processes ||= participatory_space.participatory_processes + participatory_space.assemblies + participatory_space.conferences
+        @participatory_processes ||= participatory_space.participatory_processes + 
+                                     participatory_space.assemblies + 
+                                     participatory_space.conferences
       end
 
       def participatory_space_participants_stats
@@ -40,6 +44,15 @@ module Decidim
 
       def published_components
         @published_components ||= Component.where(participatory_space: participatory_processes).published
+      end
+
+      def comments_stats
+        Decidim.stats
+              .only([:comments]) # Call .only on the registry first
+              .with_context(participatory_space)
+              .map do |stat_manifest|
+                [stat_manifest.name, stat_manifest.name, stat_manifest.value_for(participatory_space).to_i]
+              end
       end
 
       def participatory_space_sym = :superspace

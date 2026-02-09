@@ -22,7 +22,7 @@ en:
             confirm_destroy: Are you sure you want to delete this superspace?
             destroy: Delete
             edit: Edit
-            new: New superspace
+            new: New Superspace
             title: Actions
           configure:
             active_content_blocks: Active Content Blocks
@@ -34,7 +34,7 @@ en:
             no_inactive_content_blocks: All content blocks are active
             participatory_process: Participatory process
             statistics: Statistics
-            title: Configure superspace
+            title: Configure Superspace
           create:
             invalid: There was a problem creating this superspace
             success: Superspace successfully created
@@ -42,12 +42,12 @@ en:
             success: Superspace successfully deleted
           edit:
             save: Update
-            title: Edit superspace
+            title: Edit Superspace
           index:
             title: Superspaces
           new:
             create: Create
-            title: Create superspace
+            title: Create Superspace
           update:
             invalid: There was a problem saving the superspace
             success: Superspace successfully saved
@@ -58,7 +58,7 @@ en:
           update: "%{user_name} updated the %{resource_name} superspace"
       content_blocks:
         highlighted_superspaces:
-          name: Highlighted superspaces
+          name: Highlighted Superspaces
       models:
         superspace:
           fields:
