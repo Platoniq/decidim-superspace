@@ -2,6 +2,7 @@
 
 require "rails"
 require "decidim/core"
+require "decidim/initiatives/engine"
 
 require_relative "content_blocks/content_blocks_homepage"
 
