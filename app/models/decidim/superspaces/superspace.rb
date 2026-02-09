@@ -39,6 +39,10 @@ module Decidim
         find_spaces_by_type("Decidim::Conference")
       end
 
+      def initiatives
+        find_spaces_by_type("Decidim::Initiative")
+      end
+
       def statistics(stats = nil)
         return Decidim::Superspaces::SuperspaceStatsPresenter.new(self).collection if stats.nil?
 
