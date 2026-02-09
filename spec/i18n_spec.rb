@@ -20,7 +20,7 @@ describe "I18n sanity" do
     unused_keys_hash = unused_keys.to_hash
 
     locales.split(",").each do |locale|
-      unused_keys_hash[locale]&.fetch("activemodel", nil)&.fetch("attributes", nil)&.fetch("superspace", nil)&.delete("hero_image")
+      unused_keys_hash[locale]&.dig("activemodel", "attributes", "superspace")&.delete("hero_image")
     end
 
     def deep_reject_empty!(hash)

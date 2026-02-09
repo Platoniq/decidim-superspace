@@ -14,10 +14,10 @@ module Decidim
         highlighted_stats.concat(component_stats(priority: StatsRegistry::HIGH_PRIORITY))
         highlighted_stats.concat(component_stats(priority: StatsRegistry::MEDIUM_PRIORITY))
         highlighted_stats.concat(comments_stats)
-        
+
         highlighted_stats = highlighted_stats.reject(&:empty?)
-        highlighted_stats = highlighted_stats.reject do |_stat_manifest, _stat_title, stat_number| 
-          stat_number.to_i.zero? 
+        highlighted_stats = highlighted_stats.reject do |_stat_manifest, _stat_title, stat_number|
+          stat_number.to_i.zero?
         end
         grouped_highlighted_stats = highlighted_stats.group_by(&:first)
 
@@ -29,8 +29,8 @@ module Decidim
       def participatory_space = __getobj__
 
       def participatory_processes
-        @participatory_processes ||= participatory_space.participatory_processes + 
-                                     participatory_space.assemblies + 
+        @participatory_processes ||= participatory_space.participatory_processes +
+                                     participatory_space.assemblies +
                                      participatory_space.conferences
       end
 
@@ -48,11 +48,11 @@ module Decidim
 
       def comments_stats
         Decidim.stats
-              .only([:comments]) # Call .only on the registry first
-              .with_context(participatory_space)
-              .map do |stat_manifest|
-                [stat_manifest.name, stat_manifest.name, stat_manifest.value_for(participatory_space).to_i]
-              end
+               .only([:comments]) # Call .only on the registry first
+               .with_context(participatory_space)
+               .map do |stat_manifest|
+          [stat_manifest.name, stat_manifest.name, stat_manifest.value_for(participatory_space).to_i]
+        end
       end
 
       def participatory_space_sym = :superspace
