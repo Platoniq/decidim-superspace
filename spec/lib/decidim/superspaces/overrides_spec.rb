@@ -18,7 +18,7 @@ checksums = [
   {
     package: "decidim-conferences",
     files: {
-      "/app/views/decidim/conferences/conferences/show.html.erb" => "441608dc88131043a6fcaca81edc18d1"
+      "/app/views/decidim/conferences/conferences/show.html.erb" => "e849c28ea6b3b23f6293b1812e7eeb57"
     }
   }
 ]

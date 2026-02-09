@@ -13,7 +13,9 @@ module Decidim
 
       translatable_fields :title, :description
 
-      has_many :superspaces_participatory_spaces, foreign_key: "decidim_superspaces_superspace_id", dependent: :destroy
+      has_many :superspaces_participatory_spaces, 
+               foreign_key: "decidim_superspaces_superspace_id", 
+               dependent: :destroy
 
       belongs_to :organization,
                  foreign_key: "decidim_organization_id",
@@ -37,15 +39,19 @@ module Decidim
         find_spaces_by_type("Decidim::Conference")
       end
 
-      def statistics
-        Decidim::Superspaces::SuperspaceStatsPresenter.new(self).collection
+      def statistics(stats = nil)
+        return Decidim::Superspaces::SuperspaceStatsPresenter.new(self).collection if stats.nil?
+
+        super if defined?(super)
       end
 
       def show_statistics?
         content_blocks_order&.include?("statistics")
       end
 
-      def self.log_presenter_class_for(_log) = Decidim::Superspaces::AdminLog::SuperspacePresenter
+      def self.log_presenter_class_for(_log)
+        Decidim::Superspaces::AdminLog::SuperspacePresenter
+      end
 
       private
 
