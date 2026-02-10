@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# require "decidim/initiatives"
-
 module Decidim
   module Superspaces
     class Superspace < ApplicationRecord
