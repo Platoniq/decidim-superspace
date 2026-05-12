@@ -27,7 +27,7 @@ module Decidim
 
         subject { build(:superspaces_participatory_space, superspace:, participatory_space:) }
 
-        it { is_expected.not_to be_valid }
+        it { is_expected.to be_valid }
       end
     end
   end
