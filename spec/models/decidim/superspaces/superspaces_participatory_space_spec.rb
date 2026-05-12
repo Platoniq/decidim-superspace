@@ -26,7 +26,6 @@ module Decidim
         let(:superspace) { create(:superspace, organization: participatory_space.organization) }
 
         subject { build(:superspaces_participatory_space, superspace:, participatory_space:) }
-
         it { is_expected.not_to be_valid }
       end
     end
