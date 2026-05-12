@@ -12,7 +12,7 @@ module Decidim
                  polymorphic: true,
                  optional: true
 
-      validates :participatory_space_id, uniqueness: { scope: :participatory_space_type }
+      validates :participatory_space_id, uniqueness: { scope: [:participatory_space_type, :decidim_superspaces_superspace_id] }
       validate :same_organization
 
       private
