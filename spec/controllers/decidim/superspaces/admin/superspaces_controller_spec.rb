@@ -78,7 +78,7 @@ module Decidim
 
           context "with invalid params" do
             let(:title) { "" }
-            let(:locale) { "" }
+            let(:locale) { "en" }
 
             it "renders the new template" do
               post(:create, params:)
@@ -93,7 +93,7 @@ module Decidim
 
             it "redirects to index" do
               expect(controller).to receive(:redirect_to) do |params|
-                expect(params).to eq("/admin/superspaces/superspaces")
+                expect(params).to eq("/en/admin/superspaces/superspaces")
               end
 
               post :create, params:
@@ -120,7 +120,7 @@ module Decidim
 
             context "with invalid params" do
               let(:title) { "" }
-              let(:locale) { "" }
+              let(:locale) { "en" }
 
               it "renders the edit template" do
                 put(:update, params:)
@@ -131,11 +131,11 @@ module Decidim
 
             context "with valid params" do
               let(:title) { "My title" }
-              let(:locale) { "fr" }
+              let(:locale) { "en" }
 
               it "redirects to index" do
                 expect(controller).to receive(:redirect_to) do |params|
-                  expect(params).to eq("/admin/superspaces/superspaces")
+                  expect(params).to eq("/en/admin/superspaces/superspaces")
                 end
 
                 put :update, params:
@@ -166,7 +166,7 @@ module Decidim
 
             it "redirects to index" do
               expect(controller).to receive(:redirect_to) do |params|
-                expect(params).to eq("/admin/superspaces/superspaces")
+                expect(params).to eq("/en/admin/superspaces/superspaces")
               end
 
               delete :destroy, params:
