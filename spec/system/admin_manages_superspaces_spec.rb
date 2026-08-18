@@ -42,7 +42,7 @@ describe "Admin manages superspaces" do
     end
 
     it "shows new superspace button" do
-      expect(page).to have_content("New superspace")
+      expect(page).to have_content("New Superspace")
     end
 
     context "when no superspaces created" do

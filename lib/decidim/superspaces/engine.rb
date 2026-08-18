@@ -7,7 +7,6 @@ require_relative "content_blocks/content_blocks_homepage"
 
 module Decidim
   module Superspaces
-    # This is the engine that runs on the public interface of superspaces.
     class Engine < ::Rails::Engine
       isolate_namespace Decidim::Superspaces
 
@@ -20,6 +19,8 @@ module Decidim
         Decidim::Assembly.include(Decidim::Superspaces::HasSuperspace)
         Decidim::ParticipatoryProcess.include(Decidim::Superspaces::HasSuperspace)
         Decidim::Conference.include(Decidim::Superspaces::HasSuperspace)
+
+        Decidim::Initiative.include(Decidim::Superspaces::HasSuperspace) if defined?(Decidim::Initiative)
       end
 
       initializer "decidim_superspaces.register_resources" do

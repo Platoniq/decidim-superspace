@@ -56,7 +56,8 @@ const language = new LanguageSelector(superspaceId, superspaceLocale, currentLoc
 document.addEventListener("DOMContentLoaded", () => {
   if (!language.showCookiePrompt()) {
     document.getElementById("dc-dialog-locale-wrapper").style.display = "none";
-    if (language.readCookie().trim() === "change") {
+    const cookie = language.readCookie();
+    if (cookie && cookie.trim() === "change") {
       language.changeLocale();
     }
   }
