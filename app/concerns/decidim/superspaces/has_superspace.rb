@@ -11,7 +11,7 @@ module Decidim
             participatory_space_id: id,
             participatory_space_type: self.class.name
           )
-          record.present? ? record.superspace : nil
+          (record.presence&.superspace)
         end
       end
     end

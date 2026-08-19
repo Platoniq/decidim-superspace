@@ -83,7 +83,7 @@ module Decidim
           if @superspace.update(content_blocks_order: order_types)
             head :ok
           else
-            head :unprocessable_entity
+            head :unprocessable_content
           end
         end
 
