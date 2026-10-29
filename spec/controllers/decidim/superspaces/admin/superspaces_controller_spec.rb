@@ -154,6 +154,42 @@ module Decidim
           end
         end
 
+        describe "#configure" do
+          it "renders the configure template" do
+            get :configure, params: { id: superspaces.first.id }
+
+            expect(response).to render_template(:configure)
+          end
+
+          context "with a superspace from another organization" do
+            let(:other_superspace) { create(:superspace) }
+
+            it "raise not found exception" do
+              expect { get :configure, params: { id: other_superspace.id } }.to raise_error(ActiveRecord::RecordNotFound)
+            end
+          end
+        end
+
+        describe "#update_content_blocks_order" do
+          let(:ids_order) { %w(hero main_data) }
+
+          it "updates the order" do
+            put :update_content_blocks_order, params: { id: superspaces.first.id, ids_order: }
+
+            expect(response).to have_http_status(:ok)
+            expect(superspaces.first.reload.content_blocks_order).to eq(ids_order)
+          end
+
+          context "with a superspace from another organization" do
+            let(:other_superspace) { create(:superspace) }
+
+            it "does not change it" do
+              expect { put :update_content_blocks_order, params: { id: other_superspace.id, ids_order: } }.to raise_error(ActiveRecord::RecordNotFound)
+              expect(other_superspace.reload.content_blocks_order).not_to eq(ids_order)
+            end
+          end
+        end
+
         describe "#destroy" do
           let(:params) do
             {
