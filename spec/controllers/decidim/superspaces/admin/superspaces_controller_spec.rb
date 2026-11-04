@@ -93,7 +93,7 @@ module Decidim
 
             it "redirects to index" do
               expect(controller).to receive(:redirect_to) do |params|
-                expect(params).to eq("/superspaces")
+                expect(params).to eq("/admin/superspaces/superspaces")
               end
 
               post :create, params:
@@ -135,7 +135,7 @@ module Decidim
 
               it "redirects to index" do
                 expect(controller).to receive(:redirect_to) do |params|
-                  expect(params).to eq("/superspaces")
+                  expect(params).to eq("/admin/superspaces/superspaces")
                 end
 
                 put :update, params:
@@ -166,7 +166,7 @@ module Decidim
 
             it "redirects to index" do
               expect(controller).to receive(:redirect_to) do |params|
-                expect(params).to eq("/superspaces")
+                expect(params).to eq("/admin/superspaces/superspaces")
               end
 
               delete :destroy, params:

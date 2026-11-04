@@ -29,5 +29,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency "decidim-core", Decidim::Superspaces::COMPAT_DECIDIM_VERSION
   s.add_dependency "decidim-conferences", Decidim::Superspaces::COMPAT_DECIDIM_VERSION
+  s.add_dependency "decidim-initiatives", Decidim::Superspaces::COMPAT_DECIDIM_VERSION
   s.add_dependency "deface", "~> 1.9"
 end

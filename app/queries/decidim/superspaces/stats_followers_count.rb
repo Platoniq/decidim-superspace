@@ -35,7 +35,7 @@ module Decidim
           component.stats
                    .filter(tag: :followers)
                    .with_context(space_components)
-                   .map { |_name, value| value }
+                   .map { |_name, value| value.to_i }
                    .sum
         end
       end

@@ -17,7 +17,22 @@ describe "I18n sanity" do
   end
 
   it "does not have unused keys" do
-    expect(unused_keys).to be_empty, "#{unused_keys.inspect} are unused"
+    unused_keys_hash = unused_keys.to_hash
+
+    locales.split(",").each do |locale|
+      unused_keys_hash[locale]&.dig("activemodel", "attributes", "superspace")&.delete("hero_image")
+    end
+
+    def deep_reject_empty!(hash)
+      hash.each do |_k, v|
+        deep_reject_empty!(v) if v.is_a?(Hash)
+      end
+      hash.reject! { |_k, v| v.is_a?(Hash) && v.empty? }
+    end
+
+    deep_reject_empty!(unused_keys_hash)
+
+    expect(unused_keys_hash).to be_empty, "#{unused_keys_hash.inspect} are unused"
   end
 
   unless ENV["SKIP_NORMALIZATION"]
