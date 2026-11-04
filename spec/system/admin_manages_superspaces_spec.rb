@@ -92,7 +92,7 @@ describe "Admin manages superspaces" do
           find("*[type=submit]").click
         end
 
-        expect(page).to have_admin_callout("successfully")
+        expect(page).to have_admin_callout(I18n.t("decidim.superspaces.admin.superspaces.create.success"))
 
         within "table" do
           expect(page).to have_content("My superspace")
@@ -112,7 +112,7 @@ describe "Admin manages superspaces" do
           find("*[type=submit]").click
         end
 
-        expect(page).to have_admin_callout("problem")
+        expect(page).to have_admin_callout(I18n.t("decidim.superspaces.admin.superspaces.create.invalid"))
       end
 
       it "can edit superspace and show the action in the admin log" do
@@ -130,7 +130,7 @@ describe "Admin manages superspaces" do
           find("*[type=submit]").click
         end
 
-        expect(page).to have_admin_callout("successfully")
+        expect(page).to have_admin_callout(I18n.t("decidim.superspaces.admin.superspaces.update.success"))
         expect(page).to have_content("My edited superspace")
 
         click_on "Admin activity log"
@@ -153,7 +153,7 @@ describe "Admin manages superspaces" do
           find("*[type=submit]").click
         end
 
-        expect(page).to have_admin_callout("problem")
+        expect(page).to have_admin_callout(I18n.t("decidim.superspaces.admin.superspaces.update.invalid"))
       end
 
       it "can delete superspace" do
@@ -161,7 +161,7 @@ describe "Admin manages superspaces" do
           accept_confirm { click_on "Delete" }
         end
 
-        expect(page).to have_admin_callout("successfully")
+        expect(page).to have_admin_callout(I18n.t("decidim.superspaces.admin.superspaces.destroy.success"))
 
         within "table" do
           expect(page).to have_no_content(translated(superspace.title))

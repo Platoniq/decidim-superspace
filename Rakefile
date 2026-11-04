@@ -12,6 +12,7 @@ end
 def seed_db(path)
   Dir.chdir(path) do
     system("bundle exec rake db:seed")
+    system("bundle exec rails runner 'require \"decidim/superspaces/seeds\"; Decidim::Superspaces::Seeds.new.call'")
   end
 end
 

@@ -21,7 +21,11 @@ module Decidim
 
       initializer "decidim_superspaces.admin_mount_routes" do
         Decidim::Core::Engine.routes do
-          mount Decidim::Superspaces::AdminEngine, at: "/admin/superspaces", as: "decidim_admin_superspaces"
+          extend Decidim::Routes::LocaleRedirects
+
+          scope "/:locale", **locale_scope_options do
+            mount Decidim::Superspaces::AdminEngine, at: "/admin/superspaces", as: "decidim_admin_superspaces"
+          end
         end
       end
 

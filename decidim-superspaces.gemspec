@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
     "bug_tracker_uri" => "https://github.com/platoniq/decidim-superspace/issues",
     "source_code_uri" => "https://github.com/platoniq/decidim-superspace"
   }
-  s.required_ruby_version = "~> 3.1"
+  s.required_ruby_version = "~> 3.4"
 
   s.name = "decidim-superspaces"
   s.summary = "A decidim superspaces module"

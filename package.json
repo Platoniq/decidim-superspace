@@ -19,15 +19,15 @@
   },
   "prettier": "@decidim/prettier-config",
   "dependencies": {
-    "@decidim/browserslist-config": "^0.31.1",
-    "@decidim/webpacker": "^0.31.1",
+    "@decidim/browserslist-config": "^0.32.0",
+    "@decidim/webpacker": "^0.32.0",
     "date-fns": "^4.1.0"
   },
   "devDependencies": {
-    "@decidim/dev": "^0.31.1",
-    "@decidim/eslint-config": "^0.31.1",
-    "@decidim/prettier-config": "^0.31.1",
-    "@decidim/stylelint-config": "^0.31.1"
+    "@decidim/dev": "^0.32.0",
+    "@decidim/eslint-config": "^0.32.0",
+    "@decidim/prettier-config": "^0.32.0",
+    "@decidim/stylelint-config": "^0.32.0"
   },
   "browserslist": [
     "extends @decidim/browserslist-config"
