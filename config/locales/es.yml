@@ -1,5 +1,9 @@
 ---
 es:
+  activemodel:
+    attributes:
+      superspace:
+        hero_image: Hero image
   decidim:
     admin:
       menu:
@@ -18,7 +22,7 @@ es:
             confirm_destroy: '¿Estás seguro de que deseas eliminar este superespacio?'
             destroy: Eliminar
             edit: Editar
-            new: Nuevo superespacio
+            new: New Superspace
             title: Acciones
           configure:
             active_content_blocks: Bloques de contenido activos
@@ -30,7 +34,7 @@ es:
             no_inactive_content_blocks: Todos los bloques de contenido están activados
             participatory_process: Proceso participativo
             statistics: Estadísticas
-            title: Configurar superespacio
+            title: Configure Superspace
           create:
             invalid: Ha habido un problema al crear este superespacio
             success: Superespacio creado correctamente
@@ -38,12 +42,12 @@ es:
             success: Superspacial eliminado correctamente
           edit:
             save: Actualizar
-            title: Editar superespacio
+            title: Edit Superspace
           index:
             title: Superespacios
           new:
             create: Crear
-            title: Crear superespacio
+            title: Create Superspace
           update:
             invalid: Ha habido un problema al guardar el superespacio
             success: Superespacio guardado correctamente
@@ -54,7 +58,7 @@ es:
           update: "%{user_name} actualizó el superespacio %{resource_name}"
       content_blocks:
         highlighted_superspaces:
-          name: Superespacios destacados
+          name: Highlighted Superspaces
       models:
         superspace:
           fields:
