@@ -6,13 +6,13 @@ checksums = [
   {
     package: "decidim-participatory_processes",
     files: {
-      "/app/views/decidim/participatory_processes/participatory_processes/show.html.erb" => "b1ca9962640da5306bc74c75280e2f76"
+      "/app/views/decidim/participatory_processes/participatory_processes/show.html.erb" => "fe4e2906ad3a43247ca2618d4cd6a8a3"
     }
   },
   {
     package: "decidim-assemblies",
     files: {
-      "/app/views/decidim/assemblies/assemblies/show.html.erb" => "91639376fd336908604a84530557cd09"
+      "/app/views/decidim/assemblies/assemblies/show.html.erb" => "d70d93606f7d5d7f714dc91137166527"
     }
   },
   {
