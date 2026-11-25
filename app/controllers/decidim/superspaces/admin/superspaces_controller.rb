@@ -70,14 +70,14 @@ module Decidim
 
         def configure
           enforce_permission_to :update, :superspace
-          @superspace = Superspace.find(params[:id])
+          @superspace = superspace
           @active_block_types, @inactive_block_types = build_content_block_types
         end
 
         def update_content_blocks_order
           enforce_permission_to :update, :superspace
 
-          @superspace = Superspace.find(params[:id])
+          @superspace = superspace
           order_types = params[:ids_order]
 
           if @superspace.update(content_blocks_order: order_types)

@@ -33,19 +33,19 @@ module Decidim
         attr_reader :form, :current_user
 
         def create_associations(assemblies_ids, participatory_processes_ids, conference_ids)
-          Decidim::Assembly.where(id: assemblies_ids).each do |assembly|
+          Decidim::Assembly.where(organization: form.current_organization, id: assemblies_ids).each do |assembly|
             @superspace.superspaces_participatory_spaces.create!(
               participatory_space: assembly
             )
           end
 
-          Decidim::ParticipatoryProcess.where(id: participatory_processes_ids).each do |process|
+          Decidim::ParticipatoryProcess.where(organization: form.current_organization, id: participatory_processes_ids).each do |process|
             @superspace.superspaces_participatory_spaces.create!(
               participatory_space: process
             )
           end
 
-          Decidim::Conference.where(id: conference_ids).each do |conference|
+          Decidim::Conference.where(organization: form.current_organization, id: conference_ids).each do |conference|
             @superspace.superspaces_participatory_spaces.create!(
               participatory_space: conference
             )
