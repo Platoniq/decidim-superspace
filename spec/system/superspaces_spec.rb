@@ -164,4 +164,20 @@ describe "User sees superspaces" do
       expect(page).to have_content("This space is part of the #{superspaces.first.title["en"]} superspace.")
     end
   end
+
+  context "when visiting a space that belongs to a superspace" do
+    let!(:process_superspace) { create(:superspaces_participatory_space, superspace: superspaces.first, participatory_space:) }
+
+    it "shows the superspace link on the assembly page" do
+      visit decidim_assemblies.assembly_path(assembly)
+      expect(page).to have_content("This space is part of the #{translated(superspaces.first.title)} superspace.")
+      expect(page).to have_link(translated(superspaces.first.title), href: decidim_superspaces.superspace_path(superspaces.first))
+    end
+
+    it "shows the superspace link on the participatory process page" do
+      visit decidim_participatory_processes.participatory_process_path(participatory_space)
+      expect(page).to have_content("This space is part of the #{translated(superspaces.first.title)} superspace.")
+      expect(page).to have_link(translated(superspaces.first.title), href: decidim_superspaces.superspace_path(superspaces.first))
+    end
+  end
 end

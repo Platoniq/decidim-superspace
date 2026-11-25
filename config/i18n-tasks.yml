@@ -4,6 +4,8 @@ base_locale: en
 locales: [en]
 
 ignore_unused:
+  # built dynamically in Admin::ParticipatorySpaceTypeCell (configure.#{type_name})
+  - decidim.superspaces.admin.superspaces.configure.*
   - decidim.admin.menu.superspaces
   - decidim.superspaces.admin_log.*
   - decidim.superspaces.participatory_spaces.show.part_of
