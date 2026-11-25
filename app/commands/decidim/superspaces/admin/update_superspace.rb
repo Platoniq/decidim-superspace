@@ -53,7 +53,7 @@ module Decidim
           @superspace.superspaces_participatory_spaces.destroy_all
 
           if assembly_ids.present?
-            Decidim::Assembly.where(id: assembly_ids).each do |assembly|
+            Decidim::Assembly.where(organization: form.current_organization, id: assembly_ids).each do |assembly|
               @superspace.superspaces_participatory_spaces.create!(
                 participatory_space: assembly
               )
@@ -62,7 +62,7 @@ module Decidim
 
           if process_ids.present?
 
-            Decidim::ParticipatoryProcess.where(id: process_ids).each do |process|
+            Decidim::ParticipatoryProcess.where(organization: form.current_organization, id: process_ids).each do |process|
               @superspace.superspaces_participatory_spaces.create!(
                 participatory_space: process
               )
@@ -71,7 +71,7 @@ module Decidim
 
           return if conference_ids.blank?
 
-          Decidim::Conference.where(id: conference_ids).each do |conference|
+          Decidim::Conference.where(organization: form.current_organization, id: conference_ids).each do |conference|
             @superspace.superspaces_participatory_spaces.create!(
               participatory_space: conference
             )
