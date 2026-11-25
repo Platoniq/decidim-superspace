@@ -8,6 +8,8 @@ ignore_unused:
   - decidim.superspaces.admin_log.*
   - decidim.superspaces.participatory_spaces.show.part_of
   - decidim.superspaces.content_blocks.*
+  # used through an interpolated key (participatory_space_type_cell: configure.#{type_name}), which i18n-tasks 1.2 cannot see
+  - decidim.superspaces.admin.superspaces.configure.*
   - decidim.superspaces.pages.home.highlighted_superspaces*
   - decidim.superspaces.superspaces.show.assemblies
   - decidim.superspaces.superspaces.show.conferences
